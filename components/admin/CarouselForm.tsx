@@ -45,9 +45,10 @@ export default function CarouselForm({ initialData }: { initialData?: { id?: str
           <input
             type="text"
             required
-            className="w-full px-4 py-3 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#004d66]"
+            className="w-full px-4 py-3 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#004d66] text-gray-900 placeholder-gray-600"
             value={formData.title}
             onChange={(e) => setFormData({ ...formData, title: e.target.value })}
+            placeholder="Enter slide title"
           />
         </div>
         <div className="space-y-2">
@@ -55,9 +56,10 @@ export default function CarouselForm({ initialData }: { initialData?: { id?: str
           <input
             type="text"
             required
-            className="w-full px-4 py-3 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#004d66]"
+            className="w-full px-4 py-3 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#004d66] text-gray-900 placeholder-gray-600"
             value={formData.subtitle}
           onChange={(e) => setFormData({ ...formData, subtitle: e.target.value })}
+            placeholder="Enter slide subtitle"
           />
         </div>
       </div>
@@ -67,9 +69,10 @@ export default function CarouselForm({ initialData }: { initialData?: { id?: str
         <textarea
           rows={3}
           required
-          className="w-full px-4 py-3 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#004d66]"
+          className="w-full px-4 py-3 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#004d66] text-gray-900 placeholder-gray-600"
           value={formData.description}
           onChange={(e) => setFormData({ ...formData, description: e.target.value })}
+          placeholder="Enter slide description"
         />
       </div>
 
@@ -79,9 +82,10 @@ export default function CarouselForm({ initialData }: { initialData?: { id?: str
           <input
             type="text"
             required
-            className="w-full px-4 py-3 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#004d66]"
+            className="w-full px-4 py-3 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#004d66] text-gray-900 placeholder-gray-600"
             value={formData.image}
             onChange={(e) => setFormData({ ...formData, image: e.target.value })}
+            placeholder="https://example.com/image.jpg"
           />
         </div>
         <div className="space-y-2">
@@ -89,9 +93,10 @@ export default function CarouselForm({ initialData }: { initialData?: { id?: str
           <input
             type="text"
             required
-            className="w-full px-4 py-3 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#004d66]"
+            className="w-full px-4 py-3 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#004d66] text-gray-900 placeholder-gray-600"
             value={formData.ctaText}
             onChange={(e) => setFormData({ ...formData, ctaText: e.target.value })}
+            placeholder="Learn More"
           />
         </div>
       </div>
@@ -110,7 +115,7 @@ export default function CarouselForm({ initialData }: { initialData?: { id?: str
           <label className="text-xs font-bold text-gray-500 uppercase tracking-widest">Order</label>
           <input
             type="number"
-            className="w-20 px-3 py-1 border border-gray-200 rounded focus:outline-none focus:ring-2 focus:ring-[#004d66]"
+            className="w-20 px-3 py-1 border border-gray-200 rounded focus:outline-none focus:ring-2 focus:ring-[#004d66] text-gray-900"
             value={formData.order}
             onChange={(e) => setFormData({ ...formData, order: parseInt(e.target.value) })}
           />

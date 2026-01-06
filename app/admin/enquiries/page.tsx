@@ -122,7 +122,7 @@ export default function EnquiriesManagement() {
               <select
                 value={filter}
                 onChange={(e) => setFilter(e.target.value)}
-                className="border border-gray-300 rounded-md px-3 py-2 text-sm focus:outline-none focus:ring-[#004d66] focus:border-[#004d66]"
+                className="border border-gray-300 rounded-md px-3 py-2 text-sm focus:outline-none focus:ring-[#004d66] focus:border-[#004d66] text-gray-900"
               >
                 <option value="all">All Enquiries</option>
                 <option value="pending">Pending</option>
@@ -232,7 +232,7 @@ export default function EnquiriesManagement() {
                         <select
                           value={selectedEnquiry.status}
                           onChange={(e) => updateStatus(selectedEnquiry.id, e.target.value)}
-                          className="text-sm border border-gray-300 rounded-md px-2 py-1 focus:outline-none focus:ring-[#004d66] focus:border-[#004d66]"
+                          className="text-sm border border-gray-300 rounded-md px-2 py-1 focus:outline-none focus:ring-[#004d66] focus:border-[#004d66] text-gray-900"
                         >
                           <option value="PENDING">Pending</option>
                           <option value="READ">Read</option>

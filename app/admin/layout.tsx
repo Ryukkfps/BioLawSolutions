@@ -9,7 +9,8 @@ import {
   Star, 
   Calendar, 
   LogOut,
-  Phone
+  Phone,
+  FileText
 } from 'lucide-react';
 
 export const dynamic = 'force-dynamic';
@@ -27,9 +28,10 @@ export default async function AdminLayout({
 
   const menuItems = [
     { name: 'Dashboard', icon: LayoutDashboard, href: '/admin' },
+    { name: 'Content', icon: FileText, href: '/admin/content' },
     { name: 'Carousel', icon: ImageIcon, href: '/admin/carousel' },
     { name: 'Services', icon: Briefcase, href: '/admin/services' },
-    { name: 'Contact Info', icon: Phone, href: '/admin/contact' },
+    { name: 'Contact Info', icon: Phone, href: '/admin/contact-info' },
     { name: 'Enquiries', icon: Mail, href: '/admin/enquiries' },
     { name: 'Reviews', icon: Star, href: '/admin/reviews' },
     { name: 'Appointments', icon: Calendar, href: '/admin/appointments' },
@@ -69,12 +71,12 @@ export default async function AdminLayout({
       {/* Main Content */}
       <main className="flex-grow flex flex-col">
         <header className="bg-white border-b border-gray-200 px-8 py-4 flex items-center justify-between">
-          <h2 className="text-lg font-medium text-gray-800 uppercase tracking-wider">Dashboard</h2>
+          <h2 className="text-lg font-medium text-gray-800 uppercase tracking-wider">Admin Dashboard</h2>
           <div className="flex items-center gap-4">
             <span className="text-sm text-gray-600">Welcome, {session.user?.name || 'Admin'}</span>
           </div>
         </header>
-        <div className="p-8">
+        <div className="flex-grow">
           {children}
         </div>
       </main>

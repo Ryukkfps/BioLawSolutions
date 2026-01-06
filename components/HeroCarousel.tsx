@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import Image from 'next/image';
 
 interface Slide {
@@ -37,7 +37,7 @@ export default function HeroCarousel({ initialSlides }: { initialSlides: Slide[]
   const prevSlide = () => setCurrentSlide((prev) => (prev - 1 + slides.length) % slides.length);
 
   return (
-    <div className="relative h-[600px] w-full overflow-hidden">
+    <div className="relative h-screen w-full overflow-hidden">
       {slides.map((slide, index) => (
         <div
           key={slide.id}

@@ -1,6 +1,9 @@
 import HeroCarousel from "@/components/HeroCarousel";
+import ContentSections from "@/components/ContentSections";
 import Link from "next/link";
 import AppointmentForm from "@/components/public/AppointmentForm";
+import ContactInfo from "@/components/ContactInfo";
+import ReviewsDisplay from "@/components/ReviewsDisplay";
 import pool from "@/lib/db";
 
 export const dynamic = 'force-dynamic';
@@ -35,10 +38,14 @@ export default async function Home() {
   }
 
   return (
-    <div className="flex flex-col min-h-screen">
+    <div className="flex flex-col min-h-lvh">
+      {/* Hero Carousel - First Component */}
+      <HeroCarousel initialSlides={slides} />
+      
+      {/* Dynamic Content Sections - After Carousel */}
+      <ContentSections />
+      
       <main className="grow">
-        <HeroCarousel initialSlides={slides} />
-        
         {/* Additional sections can be added here */}
         <section className="py-20 px-8 bg-white">
           <div className="max-w-6xl mx-auto text-center">
@@ -48,6 +55,24 @@ export default async function Home() {
               technology, and law. Our expertise helps innovative companies and individuals navigate 
               the complexities of modern legal landscapes.
             </p>
+          </div>
+        </section>
+
+        {/* Reviews Section */}
+        <section className="py-16 px-8 bg-white">
+          <div className="max-w-6xl mx-auto">
+            <ReviewsDisplay variant="carousel" limit={5} />
+            <div className="text-center mt-8">
+              <Link 
+                href="/reviews" 
+                className="inline-flex items-center px-6 py-3 border border-[#004d66] text-[#004d66] text-sm font-bold tracking-widest uppercase hover:bg-[#004d66] hover:text-white transition-colors"
+              >
+                View All Reviews
+                <svg className="ml-2 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                </svg>
+              </Link>
+            </div>
           </div>
         </section>
 
@@ -75,16 +100,14 @@ export default async function Home() {
             <h4 className="font-bold text-gray-900 mb-4 uppercase tracking-widest text-xs">Quick Links</h4>
             <ul className="space-y-2 text-sm text-gray-600">
               <li><Link href="/" className="hover:text-[#004d66] transition-colors">Home</Link></li>
-              <li><Link href="/service" className="hover:text-[#004d66] transition-colors">Services</Link></li>
+              <li><Link href="/services" className="hover:text-[#004d66] transition-colors">Services</Link></li>
+              <li><Link href="/reviews" className="hover:text-[#004d66] transition-colors">Reviews</Link></li>
               <li><Link href="/about" className="hover:text-[#004d66] transition-colors">About Us</Link></li>
               <li><Link href="/contact" className="hover:text-[#004d66] transition-colors">Contact</Link></li>
             </ul>
           </div>
           <div>
-            <h4 className="font-bold text-gray-900 mb-4 uppercase tracking-widest text-xs">Contact Us</h4>
-            <p className="text-sm text-gray-600 mb-2">123 Legal Plaza, Suite 456</p>
-            <p className="text-sm text-gray-600 mb-2">City, State 12345</p>
-            <p className="text-sm text-gray-600">info@biolawsolutions.com</p>
+            <ContactInfo variant="sidebar" showTitle={true} />
           </div>
         </div>
         <div className="max-w-6xl mx-auto mt-12 pt-8 border-t border-gray-200 text-center">

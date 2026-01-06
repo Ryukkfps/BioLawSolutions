@@ -71,9 +71,10 @@ export default function AppointmentForm() {
           <input
             type="text"
             required
-            className="w-full px-4 py-3 bg-gray-50 border border-gray-100 rounded focus:outline-none focus:ring-1 focus:ring-[#004d66]"
+            className="w-full px-4 py-3 bg-gray-50 border border-gray-100 rounded focus:outline-none focus:ring-1 focus:ring-[#004d66] text-gray-900 placeholder-gray-600"
             value={formData.name}
             onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+            placeholder="Enter your full name"
           />
         </div>
         <div className="space-y-2">
@@ -81,9 +82,10 @@ export default function AppointmentForm() {
           <input
             type="email"
             required
-            className="w-full px-4 py-3 bg-gray-50 border border-gray-100 rounded focus:outline-none focus:ring-1 focus:ring-[#004d66]"
+            className="w-full px-4 py-3 bg-gray-50 border border-gray-100 rounded focus:outline-none focus:ring-1 focus:ring-[#004d66] text-gray-900 placeholder-gray-600"
             value={formData.email}
             onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+            placeholder="your.email@example.com"
           />
         </div>
       </div>
@@ -94,9 +96,10 @@ export default function AppointmentForm() {
           <input
             type="tel"
             required
-            className="w-full px-4 py-3 bg-gray-50 border border-gray-100 rounded focus:outline-none focus:ring-1 focus:ring-[#004d66]"
+            className="w-full px-4 py-3 bg-gray-50 border border-gray-100 rounded focus:outline-none focus:ring-1 focus:ring-[#004d66] text-gray-900 placeholder-gray-600"
             value={formData.phone}
             onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
+            placeholder="(555) 123-4567"
           />
         </div>
         <div className="space-y-2">
@@ -105,7 +108,7 @@ export default function AppointmentForm() {
             type="date"
             required
             min={new Date().toISOString().split('T')[0]}
-            className="w-full px-4 py-3 bg-gray-50 border border-gray-100 rounded focus:outline-none focus:ring-1 focus:ring-[#004d66]"
+            className="w-full px-4 py-3 bg-gray-50 border border-gray-100 rounded focus:outline-none focus:ring-1 focus:ring-[#004d66] text-gray-900"
             value={formData.date}
             onChange={(e) => setFormData({ ...formData, date: e.target.value })}
           />
@@ -114,7 +117,7 @@ export default function AppointmentForm() {
           <label className="text-[10px] font-bold text-gray-400 uppercase tracking-widest">Preferred Time</label>
           <select
             required
-            className="w-full px-4 py-3 bg-gray-50 border border-gray-100 rounded focus:outline-none focus:ring-1 focus:ring-[#004d66]"
+            className="w-full px-4 py-3 bg-gray-50 border border-gray-100 rounded focus:outline-none focus:ring-1 focus:ring-[#004d66] text-gray-900"
             value={formData.time}
             onChange={(e) => setFormData({ ...formData, time: e.target.value })}
           >
@@ -134,7 +137,7 @@ export default function AppointmentForm() {
       <div className="space-y-2">
         <label className="text-[10px] font-bold text-gray-400 uppercase tracking-widest">Service Needed</label>
         <select
-          className="w-full px-4 py-3 bg-gray-50 border border-gray-100 rounded focus:outline-none focus:ring-1 focus:ring-[#004d66]"
+          className="w-full px-4 py-3 bg-gray-50 border border-gray-100 rounded focus:outline-none focus:ring-1 focus:ring-[#004d66] text-gray-900"
           value={formData.service}
           onChange={(e) => setFormData({ ...formData, service: e.target.value })}
         >
@@ -149,9 +152,10 @@ export default function AppointmentForm() {
         <label className="text-[10px] font-bold text-gray-400 uppercase tracking-widest">Message (Optional)</label>
         <textarea
           rows={4}
-          className="w-full px-4 py-3 bg-gray-50 border border-gray-100 rounded focus:outline-none focus:ring-1 focus:ring-[#004d66]"
+          className="w-full px-4 py-3 bg-gray-50 border border-gray-100 rounded focus:outline-none focus:ring-1 focus:ring-[#004d66] text-gray-900 placeholder-gray-600"
           value={formData.message}
           onChange={(e) => setFormData({ ...formData, message: e.target.value })}
+          placeholder="Additional details about your legal needs (optional)"
         />
       </div>
 

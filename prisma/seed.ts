@@ -1,5 +1,9 @@
 import "dotenv/config";
-import { prisma } from '../lib/prisma';
+import { PrismaClient } from '@prisma/client';
+
+const prisma = new PrismaClient({
+  datasourceUrl: process.env.DATABASE_URL,
+});
 
 async function main() {
   // Create sample carousel slides
@@ -58,6 +62,52 @@ async function main() {
         icon: "ip",
         order: 3,
         isActive: true,
+      },
+    ],
+  });
+
+  // Create sample contact information
+  await prisma.contactInfo.create({
+    data: {
+      address: "123 Legal Plaza, Suite 456\nBiotech District\nSan Francisco, CA 94105",
+      phone: "(555) 123-4567",
+      email: "info@biolawsolutions.com",
+      workingHours: "Monday - Friday: 9:00 AM - 6:00 PM\nSaturday: 10:00 AM - 2:00 PM",
+    },
+  });
+
+  // Create sample reviews
+  await prisma.review.createMany({
+    data: [
+      {
+        author: "Dr. Sarah Johnson",
+        content: "Bio Law Solutions provided exceptional guidance for our biotech startup's IP strategy. Their expertise in both science and law made all the difference in securing our patents.",
+        rating: 5,
+        isApproved: true,
+      },
+      {
+        author: "Michael Chen",
+        content: "Outstanding legal support for our pharmaceutical compliance needs. The team's deep understanding of FDA regulations saved us months of delays.",
+        rating: 5,
+        isApproved: true,
+      },
+      {
+        author: "Dr. Emily Rodriguez",
+        content: "Professional, knowledgeable, and responsive. They helped us navigate complex regulatory requirements with ease. Highly recommend their services.",
+        rating: 5,
+        isApproved: true,
+      },
+      {
+        author: "James Wilson",
+        content: "Excellent legal counsel for our medical device company. Their attention to detail and proactive approach exceeded our expectations.",
+        rating: 4,
+        isApproved: true,
+      },
+      {
+        author: "Lisa Thompson",
+        content: "Great experience working with Bio Law Solutions. They made complex legal matters understandable and provided clear, actionable advice.",
+        rating: 5,
+        isApproved: false, // This one is pending approval
       },
     ],
   });

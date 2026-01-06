@@ -233,7 +233,8 @@ export default function CarouselManagement() {
                       required
                       value={formData.title}
                       onChange={(e) => setFormData({...formData, title: e.target.value})}
-                      className="mt-1 block w-full border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-[#004d66] focus:border-[#004d66]"
+                      className="mt-1 block w-full border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-[#004d66] focus:border-[#004d66] text-gray-900 placeholder-gray-600"
+                      placeholder="Enter slide title"
                     />
                   </div>
                   
@@ -244,7 +245,8 @@ export default function CarouselManagement() {
                       required
                       value={formData.subtitle}
                       onChange={(e) => setFormData({...formData, subtitle: e.target.value})}
-                      className="mt-1 block w-full border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-[#004d66] focus:border-[#004d66]"
+                      className="mt-1 block w-full border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-[#004d66] focus:border-[#004d66] text-gray-900 placeholder-gray-600"
+                      placeholder="Enter slide subtitle"
                     />
                   </div>
                   
@@ -255,7 +257,8 @@ export default function CarouselManagement() {
                       rows={3}
                       value={formData.description}
                       onChange={(e) => setFormData({...formData, description: e.target.value})}
-                      className="mt-1 block w-full border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-[#004d66] focus:border-[#004d66]"
+                      className="mt-1 block w-full border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-[#004d66] focus:border-[#004d66] text-gray-900 placeholder-gray-600"
+                      placeholder="Enter slide description"
                     />
                   </div>
                   
@@ -290,7 +293,7 @@ export default function CarouselManagement() {
                           type="text"
                           value={formData.image}
                           onChange={(e) => setFormData({...formData, image: e.target.value})}
-                          className="block w-full border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-[#004d66] focus:border-[#004d66]"
+                          className="block w-full border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-[#004d66] focus:border-[#004d66] text-gray-900 placeholder-gray-600"
                           placeholder="/path/to/image.jpg or https://example.com/image.jpg"
                         />
                       </div>
@@ -320,7 +323,8 @@ export default function CarouselManagement() {
                       required
                       value={formData.ctaText}
                       onChange={(e) => setFormData({...formData, ctaText: e.target.value})}
-                      className="mt-1 block w-full border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-[#004d66] focus:border-[#004d66]"
+                      className="mt-1 block w-full border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-[#004d66] focus:border-[#004d66] text-gray-900 placeholder-gray-600"
+                      placeholder="Learn More"
                     />
                   </div>
                   
@@ -333,7 +337,7 @@ export default function CarouselManagement() {
                         min="1"
                         value={formData.order}
                         onChange={(e) => setFormData({...formData, order: parseInt(e.target.value)})}
-                        className="mt-1 block w-full border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-[#004d66] focus:border-[#004d66]"
+                        className="mt-1 block w-full border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-[#004d66] focus:border-[#004d66] text-gray-900"
                       />
                     </div>
                     
@@ -342,7 +346,7 @@ export default function CarouselManagement() {
                       <select
                         value={formData.isActive ? 'active' : 'inactive'}
                         onChange={(e) => setFormData({...formData, isActive: e.target.value === 'active'})}
-                        className="mt-1 block w-full border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-[#004d66] focus:border-[#004d66]"
+                        className="mt-1 block w-full border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-[#004d66] focus:border-[#004d66] text-gray-900"
                       >
                         <option value="active">Active</option>
                         <option value="inactive">Inactive</option>

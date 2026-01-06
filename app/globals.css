@@ -48,6 +48,28 @@ body {
   animation-delay: 0.2s;
 }
 
+/* Smooth scrolling for content sections */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Content sections styling */
+.content-sections section {
+  scroll-snap-align: start;
+}
+
+.content-sections {
+  scroll-snap-type: y mandatory;
+}
+
+/* Line clamp utility */
+.line-clamp-2 {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
 .delay-300 {
   animation-delay: 0.3s;
 }

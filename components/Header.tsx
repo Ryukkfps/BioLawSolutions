@@ -21,7 +21,7 @@ export default function Header() {
         <Link href="/" className="text-sm font-medium tracking-widest text-gray-600 hover:text-[#004d66] transition-colors uppercase">
           Home
         </Link>
-        <Link href="/service" className="text-sm font-medium tracking-widest text-gray-600 hover:text-[#004d66] transition-colors uppercase">
+        <Link href="/services" className="text-sm font-medium tracking-widest text-gray-600 hover:text-[#004d66] transition-colors uppercase">
           Services
         </Link>
         <Link href="/about" className="text-sm font-medium tracking-widest text-gray-600 hover:text-[#004d66] transition-colors uppercase">

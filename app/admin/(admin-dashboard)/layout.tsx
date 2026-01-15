@@ -10,7 +10,8 @@ import {
   Calendar, 
   LogOut,
   Phone,
-  FileText
+  FileText,
+  Info
 } from 'lucide-react';
 
 export const dynamic = 'force-dynamic';
@@ -34,6 +35,7 @@ export default async function AdminLayout({
     { name: 'Contact Info', icon: Phone, href: '/admin/contact-info' },
     { name: 'Enquiries', icon: Mail, href: '/admin/enquiries' },
     { name: 'Reviews', icon: Star, href: '/admin/reviews' },
+    { name: 'About Us', icon: Info, href: '/admin/about' },
     { name: 'Appointments', icon: Calendar, href: '/admin/appointments' },
   ];
 
@@ -58,20 +60,22 @@ export default async function AdminLayout({
           ))}
         </nav>
         <div className="p-4 border-t border-white/10">
-          <Link
-            href="/api/auth/signout"
-            className="flex items-center gap-3 px-4 py-3 text-sm font-medium hover:bg-white/10 rounded-lg transition-colors"
-          >
-            <LogOut className="w-5 h-5" />
-            Sign Out
-          </Link>
+          <form action="/api/auth/signout" method="post">
+            <button
+              type="submit"
+              className="w-full flex items-center gap-3 px-4 py-3 text-sm font-medium hover:bg-white/10 rounded-lg transition-colors text-left"
+            >
+              <LogOut className="w-5 h-5" />
+              Sign Out
+            </button>
+          </form>
         </div>
       </aside>
 
       {/* Main Content */}
       <main className="flex-grow flex flex-col">
         <header className="bg-white border-b border-gray-200 px-8 py-4 flex items-center justify-between">
-          <h2 className="text-lg font-medium text-gray-800 uppercase tracking-wider">Admin Dashboard</h2>
+          <h2 className="text-lg font-medium text-gray-800 uppercase tracking-wider">Admin Panel</h2>
           <div className="flex items-center gap-4">
             <span className="text-sm text-gray-600">Welcome, {session.user?.name || 'Admin'}</span>
           </div>

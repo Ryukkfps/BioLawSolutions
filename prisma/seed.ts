@@ -2,7 +2,7 @@ import "dotenv/config";
 import { PrismaClient } from '@prisma/client';
 
 const prisma = new PrismaClient({
-  datasourceUrl: process.env.DATABASE_URL,
+  log: ["error"],
 });
 
 async function main() {
@@ -109,6 +109,30 @@ async function main() {
         rating: 5,
         isApproved: false, // This one is pending approval
       },
+    ],
+  });
+
+  // Create sample about sections
+  await prisma.aboutSection.createMany({
+    data: [
+      {
+        title: "Claire Sanders",
+        subtitle: "MEET OUR FOUNDER",
+        content: '"Having worked in fast growth and highly innovative environments, I understand the pressures and competing priorities experienced by start-up and scale-up businesses."\n\nClaire qualified as a corporate lawyer in 2007, working initially in private practice before moving in-house to build and lead the legal functions of some of the most iconic consumer brands.\n\nClaire now specialises in delivering practical legal solutions to high growth companies and has extensive experience working collaboratively across business functions.',
+        image: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=1000",
+        layout: "NORMAL",
+        order: 1,
+        isActive: true,
+      },
+      {
+        title: "Our Mission",
+        subtitle: "WHAT DRIVES US",
+        content: "At Bio Law Solutions, we are dedicated to providing expert legal guidance at the intersection of life sciences and technology. Our mission is to empower innovators by navigating complex legal landscapes with precision and foresight.\n\nWe believe in a collaborative approach, working closely with our clients to understand their unique challenges and goals. Our team combines deep legal expertise with a passion for scientific progress.",
+        image: "https://images.unsplash.com/photo-1453928582365-b6ad33cbcf64?q=80&w=1000",
+        layout: "MIRRORED",
+        order: 2,
+        isActive: true,
+      }
     ],
   });
 

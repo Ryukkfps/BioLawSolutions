@@ -1,8 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
-import pool from '@/lib/db';
+import { prisma } from '@/lib/prisma';
 import { auth } from '@/auth';
 
-// PUT - Update review (admin only - mainly for approval)
 export async function PUT(
   request: NextRequest,
   context: { params: Promise<{ id: string }> }
@@ -21,22 +20,10 @@ export async function PUT(
     const params = await context.params;
     const reviewId = params.id;
 
-    // Update review approval status
-    await pool.query(
-      'UPDATE Review SET isApproved = ? WHERE id = ?',
-      [isApproved, reviewId]
-    );
-
-    // Fetch the updated review
-    const [rows] = await pool.query('SELECT * FROM Review WHERE id = ?', [reviewId]);
-    const review = (rows as any[])[0];
-
-    if (!review) {
-      return NextResponse.json(
-        { error: 'Review not found' },
-        { status: 404 }
-      );
-    }
+    const review = await prisma.review.update({
+      where: { id: reviewId },
+      data: { isApproved }
+    });
 
     return NextResponse.json(review);
   } catch (error) {
@@ -48,7 +35,6 @@ export async function PUT(
   }
 }
 
-// DELETE - Delete review (admin only)
 export async function DELETE(
   request: NextRequest,
   context: { params: Promise<{ id: string }> }
@@ -66,19 +52,9 @@ export async function DELETE(
     const params = await context.params;
     const reviewId = params.id;
 
-    // Check if review exists
-    const [rows] = await pool.query('SELECT * FROM Review WHERE id = ?', [reviewId]);
-    const review = (rows as any[])[0];
-
-    if (!review) {
-      return NextResponse.json(
-        { error: 'Review not found' },
-        { status: 404 }
-      );
-    }
-
-    // Delete the review
-    await pool.query('DELETE FROM Review WHERE id = ?', [reviewId]);
+    await prisma.review.delete({
+      where: { id: reviewId }
+    });
 
     return NextResponse.json({ message: 'Review deleted successfully' });
   } catch (error) {

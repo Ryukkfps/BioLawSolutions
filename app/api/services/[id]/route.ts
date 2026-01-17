@@ -1,8 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
-import pool from '@/lib/db';
+import { prisma } from '@/lib/prisma';
 import { auth } from '@/auth';
 
-// PUT - Update service (admin only)
 export async function PUT(
   request: NextRequest,
   context: { params: Promise<{ id: string }> }
@@ -20,23 +19,23 @@ export async function PUT(
     const params = await context.params;
     const serviceId = params.id;
 
+    const body = await request.json();
     const { 
       title, 
       subtitle,
       description, 
       detailedDescription,
-      backgroundImage, 
-      ctaText, 
-      ctaLink, 
-      textColor, 
-      overlayOpacity, 
+      backgroundImage,
+      ctaText,
+      ctaLink,
+      textColor,
+      overlayOpacity,
       styleType,
       order, 
       icon,
       isActive 
-    } = await request.json();
+    } = body;
 
-    // Validate required fields
     if (!title || !description) {
       return NextResponse.json(
         { error: 'Title and description are required' },
@@ -44,53 +43,42 @@ export async function PUT(
       );
     }
 
-    // Update service
-    await pool.query(
-      `UPDATE Service SET 
-       title = ?, subtitle = ?, description = ?, detailedDescription = ?, backgroundImage = ?, 
-       ctaText = ?, ctaLink = ?, textColor = ?, overlayOpacity = ?, styleType = ?,
-       \`order\` = ?, icon = ?, isActive = ?, updatedAt = NOW() 
-       WHERE id = ?`,
-      [
-        title,
-        subtitle || null,
-        description,
-        detailedDescription || null,
-        backgroundImage || null,
-        ctaText || null,
-        ctaLink || null,
-        textColor || 'white',
-        overlayOpacity || 0.5,
-        styleType || 'card',
-        order || 0,
-        icon || null,
-        isActive !== undefined ? isActive : true,
-        serviceId
-      ]
-    );
+    // Ensure types are correct for Prisma
+    const updateData = {
+      title,
+      subtitle: subtitle || null,
+      description,
+      detailedDescription: detailedDescription || null,
+      backgroundImage: backgroundImage || null,
+      ctaText: ctaText || null,
+      ctaLink: ctaLink || null,
+      textColor: textColor || "black",
+      overlayOpacity: typeof overlayOpacity === 'number' ? overlayOpacity : (typeof overlayOpacity === 'string' ? parseFloat(overlayOpacity) : 0.5),
+      styleType: styleType || "card",
+      order: typeof order === 'number' ? order : (typeof order === 'string' ? parseInt(order) : 0),
+      icon: icon || null,
+      isActive: isActive !== undefined ? isActive : true,
+    };
 
-    // Fetch the updated service
-    const [rows] = await pool.query('SELECT * FROM Service WHERE id = ?', [serviceId]);
-    const service = (rows as any[])[0];
-
-    if (!service) {
-      return NextResponse.json(
-        { error: 'Service not found' },
-        { status: 404 }
-      );
-    }
+    const service = await prisma.service.update({
+      where: { id: serviceId },
+      data: updateData
+    });
 
     return NextResponse.json(service);
   } catch (error) {
     console.error('Error updating service:', error);
+    if (error instanceof Error) {
+      console.error('Error message:', error.message);
+      console.error('Error stack:', error.stack);
+    }
     return NextResponse.json(
-      { error: 'Failed to update service' },
+      { error: 'Failed to update service', details: error instanceof Error ? error.message : String(error) },
       { status: 500 }
     );
   }
 }
 
-// DELETE - Delete service (admin only)
 export async function DELETE(
   request: NextRequest,
   context: { params: Promise<{ id: string }> }
@@ -108,19 +96,9 @@ export async function DELETE(
     const params = await context.params;
     const serviceId = params.id;
 
-    // Check if service exists
-    const [rows] = await pool.query('SELECT * FROM Service WHERE id = ?', [serviceId]);
-    const service = (rows as any[])[0];
-
-    if (!service) {
-      return NextResponse.json(
-        { error: 'Service not found' },
-        { status: 404 }
-      );
-    }
-
-    // Delete the service
-    await pool.query('DELETE FROM Service WHERE id = ?', [serviceId]);
+    await prisma.service.delete({
+      where: { id: serviceId }
+    });
 
     return NextResponse.json({ message: 'Service deleted successfully' });
   } catch (error) {

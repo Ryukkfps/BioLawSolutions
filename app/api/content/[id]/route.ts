@@ -1,8 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
-import pool from '@/lib/db';
+import { prisma } from '@/lib/prisma';
 import { auth } from '@/auth';
 
-// PUT - Update content section (admin only)
 export async function PUT(
   request: NextRequest,
   context: { params: Promise<{ id: string }> }
@@ -20,6 +19,7 @@ export async function PUT(
     const params = await context.params;
     const contentId = params.id;
 
+    const body = await request.json();
     const { 
       title, 
       subtitle, 
@@ -31,9 +31,8 @@ export async function PUT(
       overlayOpacity, 
       order, 
       isActive 
-    } = await request.json();
+    } = body;
 
-    // Validate required fields
     if (!title || !description) {
       return NextResponse.json(
         { error: 'Title and description are required' },
@@ -48,38 +47,21 @@ export async function PUT(
       );
     }
 
-    // Update content section
-    await pool.query(
-      `UPDATE Content SET 
-       title = ?, subtitle = ?, description = ?, backgroundImage = ?, 
-       ctaText = ?, ctaLink = ?, textColor = ?, overlayOpacity = ?, 
-       \`order\` = ?, isActive = ?, updatedAt = NOW() 
-       WHERE id = ?`,
-      [
+    const content = await prisma.content.update({
+      where: { id: contentId },
+      data: {
         title,
-        subtitle || null,
+        subtitle: subtitle || null,
         description,
         backgroundImage,
-        ctaText || null,
-        ctaLink || null,
-        textColor || 'white',
-        overlayOpacity || 0.5,
-        order || 0,
-        isActive !== undefined ? isActive : true,
-        contentId
-      ]
-    );
-
-    // Fetch the updated content
-    const [rows] = await pool.query('SELECT * FROM Content WHERE id = ?', [contentId]);
-    const content = (rows as any[])[0];
-
-    if (!content) {
-      return NextResponse.json(
-        { error: 'Content not found' },
-        { status: 404 }
-      );
-    }
+        ctaText: ctaText || null,
+        ctaLink: ctaLink || null,
+        textColor: textColor || 'white',
+        overlayOpacity: overlayOpacity || 0.5,
+        order: order || 0,
+        isActive: isActive !== undefined ? isActive : true,
+      }
+    });
 
     return NextResponse.json(content);
   } catch (error) {
@@ -91,7 +73,6 @@ export async function PUT(
   }
 }
 
-// DELETE - Delete content section (admin only)
 export async function DELETE(
   request: NextRequest,
   context: { params: Promise<{ id: string }> }
@@ -109,19 +90,9 @@ export async function DELETE(
     const params = await context.params;
     const contentId = params.id;
 
-    // Check if content exists
-    const [rows] = await pool.query('SELECT * FROM Content WHERE id = ?', [contentId]);
-    const content = (rows as any[])[0];
-
-    if (!content) {
-      return NextResponse.json(
-        { error: 'Content not found' },
-        { status: 404 }
-      );
-    }
-
-    // Delete the content
-    await pool.query('DELETE FROM Content WHERE id = ?', [contentId]);
+    await prisma.content.delete({
+      where: { id: contentId }
+    });
 
     return NextResponse.json({ message: 'Content deleted successfully' });
   } catch (error) {

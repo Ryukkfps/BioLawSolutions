@@ -1,12 +1,12 @@
 import { NextResponse } from "next/server";
-import pool from "@/lib/db";
+import { prisma } from "@/lib/prisma";
 
 export async function GET() {
   try {
-    const [rows] = await pool.query(
-      'SELECT * FROM CarouselSlide ORDER BY `order` ASC'
-    );
-    return NextResponse.json(rows);
+    const slides = await prisma.carouselSlide.findMany({
+      orderBy: { order: 'asc' }
+    });
+    return NextResponse.json(slides);
   } catch (error) {
     console.error('Database error:', error);
     return NextResponse.json(
@@ -21,14 +21,19 @@ export async function POST(request: Request) {
     const body = await request.json();
     const { title, subtitle, description, image, ctaText, order, isActive } = body;
     
-    const slideId = `slide_${Date.now()}`;
+    const slide = await prisma.carouselSlide.create({
+      data: {
+        title,
+        subtitle,
+        description,
+        image,
+        ctaText,
+        order: order || 0,
+        isActive: isActive !== undefined ? isActive : true
+      }
+    });
     
-    const [result] = await pool.query(
-      'INSERT INTO CarouselSlide (id, title, subtitle, description, image, ctaText, `order`, isActive, createdAt, updatedAt) VALUES (?, ?, ?, ?, ?, ?, ?, ?, NOW(), NOW())',
-      [slideId, title, subtitle, description, image, ctaText, order, isActive]
-    );
-    
-    return NextResponse.json({ success: true, id: slideId, result });
+    return NextResponse.json({ success: true, id: slide.id, result: slide });
   } catch (error) {
     console.error('Database error:', error);
     return NextResponse.json(

@@ -1,12 +1,12 @@
 import { NextResponse } from "next/server";
-import pool from "@/lib/db";
+import { prisma } from "@/lib/prisma";
 
 export async function GET() {
   try {
-    const [rows] = await pool.query(
-      'SELECT * FROM AboutSection ORDER BY `order` ASC'
-    );
-    return NextResponse.json(rows);
+    const sections = await prisma.aboutSection.findMany({
+      orderBy: { order: 'asc' }
+    });
+    return NextResponse.json(sections);
   } catch (error) {
     console.error('Database error:', error);
     return NextResponse.json(
@@ -21,14 +21,19 @@ export async function POST(request: Request) {
     const body = await request.json();
     const { title, subtitle, content, image, layout, order, isActive } = body;
     
-    const id = `about_${Date.now()}`;
+    const section = await prisma.aboutSection.create({
+      data: {
+        title,
+        subtitle,
+        content,
+        image,
+        layout: layout || 'NORMAL',
+        order: order || 0,
+        isActive: isActive !== undefined ? isActive : true
+      }
+    });
     
-    const [result] = await pool.query(
-      'INSERT INTO AboutSection (id, title, subtitle, content, image, layout, `order`, isActive, createdAt, updatedAt) VALUES (?, ?, ?, ?, ?, ?, ?, ?, NOW(), NOW())',
-      [id, title, subtitle, content, image, layout || 'NORMAL', order || 0, isActive !== undefined ? isActive : true]
-    );
-    
-    return NextResponse.json({ success: true, id, result });
+    return NextResponse.json({ success: true, id: section.id, result: section });
   } catch (error) {
     console.error('Database error:', error);
     return NextResponse.json(

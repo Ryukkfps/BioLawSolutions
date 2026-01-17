@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import pool from "@/lib/db";
+import { prisma } from "@/lib/prisma";
 
 export async function PUT(
   request: Request,
@@ -10,12 +10,12 @@ export async function PUT(
     const body = await request.json();
     const { status } = body;
     
-    const [result] = await pool.query(
-      'UPDATE Enquiry SET status = ? WHERE id = ?',
-      [status, id]
-    );
+    const enquiry = await prisma.enquiry.update({
+      where: { id },
+      data: { status }
+    });
     
-    return NextResponse.json({ success: true, result });
+    return NextResponse.json({ success: true, result: enquiry });
   } catch (error) {
     console.error('Database error:', error);
     return NextResponse.json(
@@ -32,12 +32,11 @@ export async function DELETE(
   try {
     const { id } = await params;
     
-    const [result] = await pool.query(
-      'DELETE FROM Enquiry WHERE id = ?',
-      [id]
-    );
+    await prisma.enquiry.delete({
+      where: { id }
+    });
     
-    return NextResponse.json({ success: true, result });
+    return NextResponse.json({ success: true });
   } catch (error) {
     console.error('Database error:', error);
     return NextResponse.json(

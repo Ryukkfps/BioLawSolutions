@@ -1,12 +1,12 @@
 import { NextResponse } from "next/server";
-import pool from "@/lib/db";
+import { prisma } from "@/lib/prisma";
 
 export async function GET() {
   try {
-    const [rows] = await pool.query(
-      'SELECT * FROM Enquiry ORDER BY createdAt DESC'
-    );
-    return NextResponse.json(rows);
+    const enquiries = await prisma.enquiry.findMany({
+      orderBy: { createdAt: 'desc' }
+    });
+    return NextResponse.json(enquiries);
   } catch (error) {
     console.error('Database error:', error);
     return NextResponse.json(
@@ -21,14 +21,17 @@ export async function POST(request: Request) {
     const body = await request.json();
     const { name, email, subject, message } = body;
     
-    const enquiryId = `enquiry_${Date.now()}`;
+    const enquiry = await prisma.enquiry.create({
+      data: {
+        name,
+        email,
+        subject,
+        message,
+        status: 'PENDING'
+      }
+    });
     
-    const [result] = await pool.query(
-      'INSERT INTO Enquiry (id, name, email, subject, message, status, createdAt) VALUES (?, ?, ?, ?, ?, ?, NOW())',
-      [enquiryId, name, email, subject, message, 'PENDING']
-    );
-    
-    return NextResponse.json({ success: true, id: enquiryId, result });
+    return NextResponse.json({ success: true, id: enquiry.id, result: enquiry });
   } catch (error) {
     console.error('Database error:', error);
     return NextResponse.json(

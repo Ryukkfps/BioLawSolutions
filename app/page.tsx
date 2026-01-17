@@ -4,36 +4,21 @@ import Link from "next/link";
 import AppointmentForm from "@/components/public/AppointmentForm";
 import ContactInfo from "@/components/ContactInfo";
 import ReviewsDisplay from "@/components/ReviewsDisplay";
-import pool from "@/lib/db";
+import { prisma } from "@/lib/prisma";
 
 export const dynamic = 'force-dynamic';
 export const revalidate = 0;
 
-// Type definition for carousel slide
-interface CarouselSlide {
-  id: string;
-  title: string;
-  subtitle: string;
-  description: string;
-  image: string;
-  ctaText: string;
-  order: number;
-  isActive: boolean;
-  createdAt: Date;
-  updatedAt: Date;
-}
-
 export default async function Home() {
-  let slides: CarouselSlide[] = [];
+  let slides: any[] = [];
 
   try {
-    const [rows] = await pool.query(
-      'SELECT * FROM CarouselSlide WHERE isActive = true ORDER BY `order` ASC'
-    );
-    slides = rows as CarouselSlide[];
+    slides = await prisma.carouselSlide.findMany({
+      where: { isActive: true },
+      orderBy: { order: 'asc' }
+    });
   } catch (error) {
     console.error('Database error:', error);
-    // Fallback to empty array if database fails
     slides = [];
   }
 

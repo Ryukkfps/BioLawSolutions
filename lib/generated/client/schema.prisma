@@ -1,0 +1,123 @@
+generator client {
+  provider = "prisma-client-js"
+  output   = "../lib/generated/client"
+}
+
+datasource db {
+  provider = "mongodb"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  name      String?
+  email     String?  @unique
+  password  String?
+  role      String   @default("ADMIN")
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model CarouselSlide {
+  id          String   @id @default(auto()) @map("_id") @db.ObjectId
+  title       String
+  subtitle    String
+  description String
+  image       String
+  ctaText     String
+  order       Int      @default(0)
+  isActive    Boolean  @default(true)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model Service {
+  id                  String   @id @default(auto()) @map("_id") @db.ObjectId
+  title               String
+  subtitle            String?
+  description         String
+  detailedDescription String?
+  backgroundImage     String?
+  ctaText             String?
+  ctaLink             String?
+  textColor           String   @default("black")
+  overlayOpacity      Float    @default(0.5)
+  styleType           String   @default("card") // 'fullscreen' or 'card'
+  icon                String?
+  order               Int      @default(0)
+  isActive            Boolean  @default(true)
+  createdAt           DateTime @default(now())
+  updatedAt           DateTime @updatedAt
+}
+
+model ContactInfo {
+  id           String   @id @default(auto()) @map("_id") @db.ObjectId
+  address      String
+  phone        String
+  email        String
+  workingHours String?
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+}
+
+model Enquiry {
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  name      String
+  email     String
+  subject   String
+  message   String
+  status    String   @default("PENDING") // PENDING, READ, ARCHIVED
+  createdAt DateTime @default(now())
+}
+
+model Review {
+  id         String   @id @default(auto()) @map("_id") @db.ObjectId
+  author     String
+  content    String
+  rating     Int      @default(5)
+  isApproved Boolean  @default(false)
+  createdAt  DateTime @default(now())
+}
+
+model Appointment {
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  name      String
+  email     String
+  phone     String
+  date      DateTime
+  time      String
+  service   String
+  message   String?
+  status    String   @default("PENDING") // PENDING, ACCEPTED, REJECTED, BLOCKED
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Content {
+  id              String   @id @default(auto()) @map("_id") @db.ObjectId
+  title           String
+  subtitle        String?
+  description     String
+  backgroundImage String
+  ctaText         String?
+  ctaLink         String?
+  textColor       String   @default("white") // white, black, custom
+  overlayOpacity  Float    @default(0.5) // 0.0 to 1.0 for background overlay
+  order           Int      @default(0)
+  isActive        Boolean  @default(true)
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+}
+
+model AboutSection {
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  title     String
+  subtitle  String?
+  content   String
+  image     String
+  layout    String   @default("NORMAL") // NORMAL (image left), MIRRORED (image right)
+  order     Int      @default(0)
+  isActive  Boolean  @default(true)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}

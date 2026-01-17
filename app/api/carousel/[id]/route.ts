@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import pool from "@/lib/db";
+import { prisma } from "@/lib/prisma";
 
 export async function PUT(
   request: Request,
@@ -10,12 +10,20 @@ export async function PUT(
     const body = await request.json();
     const { title, subtitle, description, image, ctaText, order, isActive } = body;
     
-    const [result] = await pool.query(
-      'UPDATE CarouselSlide SET title = ?, subtitle = ?, description = ?, image = ?, ctaText = ?, `order` = ?, isActive = ?, updatedAt = NOW() WHERE id = ?',
-      [title, subtitle, description, image, ctaText, order, isActive, id]
-    );
+    const slide = await prisma.carouselSlide.update({
+      where: { id },
+      data: {
+        title,
+        subtitle,
+        description,
+        image,
+        ctaText,
+        order,
+        isActive,
+      }
+    });
     
-    return NextResponse.json({ success: true, result });
+    return NextResponse.json({ success: true, result: slide });
   } catch (error) {
     console.error('Database error:', error);
     return NextResponse.json(
@@ -32,10 +40,9 @@ export async function DELETE(
   try {
     const { id } = await params;
     
-    const [result] = await pool.query(
-      'DELETE FROM CarouselSlide WHERE id = ?',
-      [id]
-    );
+    const result = await prisma.carouselSlide.delete({
+      where: { id }
+    });
     
     return NextResponse.json({ success: true, result });
   } catch (error) {

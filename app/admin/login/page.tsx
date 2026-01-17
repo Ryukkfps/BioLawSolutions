@@ -2,30 +2,37 @@
 
 import { useState } from 'react';
 import { signIn } from 'next-auth/react';
-import { useRouter } from 'next/navigation';
+import { SessionProvider } from 'next-auth/react';
 
-export default function AdminLogin() {
+function LoginForm() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
-  const router = useRouter();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setError('');
 
     try {
+      // Get the current origin dynamically
+      const currentOrigin = typeof window !== 'undefined' ? window.location.origin : '';
+      const callbackUrl = `${currentOrigin}/admin`;
+
       const result = await signIn('credentials', {
         email,
         password,
         redirect: false,
+        callbackUrl,
       });
 
       if (result?.error) {
         setError('Invalid credentials');
+      } else if (result?.url) {
+        // Use the returned URL to maintain the correct host
+        window.location.href = result.url;
       } else {
-        router.push('/admin');
-        router.refresh();
+        // Fallback to admin page with current origin
+        window.location.href = callbackUrl;
       }
     } catch (_err) {
       setError('An error occurred. Please try again.');
@@ -52,6 +59,7 @@ export default function AdminLogin() {
           <div className="rounded-md shadow-sm -space-y-px">
             <div>
               <input
+                name="email"
                 type="email"
                 required
                 className="appearance-none rounded-none relative block w-full px-3 py-3 border border-gray-300 placeholder-gray-600 text-gray-900 rounded-t-md focus:outline-none focus:ring-[#004d66] focus:border-[#004d66] focus:z-10 sm:text-sm"
@@ -62,6 +70,7 @@ export default function AdminLogin() {
             </div>
             <div>
               <input
+                name="password"
                 type="password"
                 required
                 className="appearance-none rounded-none relative block w-full px-3 py-3 border border-gray-300 placeholder-gray-600 text-gray-900 rounded-b-md focus:outline-none focus:ring-[#004d66] focus:border-[#004d66] focus:z-10 sm:text-sm"
@@ -83,5 +92,13 @@ export default function AdminLogin() {
         </form>
       </div>
     </div>
+  );
+}
+
+export default function AdminLogin() {
+  return (
+    <SessionProvider>
+      <LoginForm />
+    </SessionProvider>
   );
 }

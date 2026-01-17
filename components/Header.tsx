@@ -6,7 +6,7 @@ export default function Header() {
     <header className="flex items-center justify-between px-8 py-4 bg-white border-b border-gray-100 sticky top-0 z-50">
       <Link href="/" className="flex items-center gap-2">
         <Image 
-          src="/bio-law-solutions.svg" 
+          src="/img/biolawsolutionslogo.png" 
           alt="Bio Law Solutions Logo" 
           width={150} 
           height={150} 

@@ -1,18 +1,13 @@
 import { NextRequest, NextResponse } from 'next/server';
-import pool from '@/lib/db';
+import { prisma } from '@/lib/prisma';
 import { auth } from '@/auth';
 
-// GET - Fetch content sections (public endpoint for active content, admin endpoint for all content)
 export async function GET(request: NextRequest) {
   try {
     const { searchParams } = new URL(request.url);
     const adminView = searchParams.get('admin') === 'true';
     
-    let query = 'SELECT * FROM Content';
-    let params: any[] = [];
-
     if (adminView) {
-      // Admin view - check authentication
       const session = await auth();
       if (!session) {
         return NextResponse.json(
@@ -20,18 +15,20 @@ export async function GET(request: NextRequest) {
           { status: 401 }
         );
       }
-      // Show all content for admin
-      query += ' ORDER BY `order` ASC, createdAt DESC';
+      const content = await prisma.content.findMany({
+        orderBy: [
+          { order: 'asc' },
+          { createdAt: 'desc' }
+        ]
+      });
+      return NextResponse.json(content);
     } else {
-      // Public view - only active content
-      query += ' WHERE isActive = ? ORDER BY `order` ASC';
-      params = [true];
+      const content = await prisma.content.findMany({
+        where: { isActive: true },
+        orderBy: { order: 'asc' }
+      });
+      return NextResponse.json(content);
     }
-
-    const [rows] = await pool.query(query, params);
-    const content = rows as any[];
-
-    return NextResponse.json(content);
   } catch (error) {
     console.error('Error fetching content:', error);
     return NextResponse.json(
@@ -41,7 +38,6 @@ export async function GET(request: NextRequest) {
   }
 }
 
-// POST - Create new content section (admin only)
 export async function POST(request: NextRequest) {
   try {
     const session = await auth();
@@ -53,6 +49,7 @@ export async function POST(request: NextRequest) {
       );
     }
 
+    const body = await request.json();
     const { 
       title, 
       subtitle, 
@@ -64,9 +61,8 @@ export async function POST(request: NextRequest) {
       overlayOpacity, 
       order, 
       isActive 
-    } = await request.json();
+    } = body;
 
-    // Validate required fields
     if (!title || !description) {
       return NextResponse.json(
         { error: 'Title and description are required' },
@@ -81,29 +77,20 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // Create new content section
-    const contentId = `content_${Date.now()}`;
-    await pool.query(
-      `INSERT INTO Content (id, title, subtitle, description, backgroundImage, ctaText, ctaLink, textColor, overlayOpacity, \`order\`, isActive, createdAt, updatedAt) 
-       VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, NOW(), NOW())`,
-      [
-        contentId,
+    const content = await prisma.content.create({
+      data: {
         title,
-        subtitle || null,
+        subtitle: subtitle || null,
         description,
         backgroundImage,
-        ctaText || null,
-        ctaLink || null,
-        textColor || 'white',
-        overlayOpacity || 0.5,
-        order || 0,
-        isActive !== undefined ? isActive : true
-      ]
-    );
-
-    // Fetch the created content
-    const [rows] = await pool.query('SELECT * FROM Content WHERE id = ?', [contentId]);
-    const content = (rows as any[])[0];
+        ctaText: ctaText || null,
+        ctaLink: ctaLink || null,
+        textColor: textColor || 'white',
+        overlayOpacity: overlayOpacity || 0.5,
+        order: order || 0,
+        isActive: isActive !== undefined ? isActive : true
+      }
+    });
 
     return NextResponse.json(content);
   } catch (error) {

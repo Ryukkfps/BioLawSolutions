@@ -1,12 +1,12 @@
 import { NextRequest, NextResponse } from 'next/server';
-import pool from '@/lib/db';
+import { prisma } from '@/lib/prisma';
 import { auth } from '@/auth';
 
-// GET - Fetch contact info (public endpoint)
 export async function GET() {
   try {
-    const [rows] = await pool.query('SELECT * FROM ContactInfo ORDER BY updatedAt DESC LIMIT 1');
-    const contactInfo = (rows as any[])[0] || null;
+    const contactInfo = await prisma.contactInfo.findFirst({
+      orderBy: { updatedAt: 'desc' }
+    });
 
     return NextResponse.json(contactInfo);
   } catch (error) {
@@ -18,7 +18,6 @@ export async function GET() {
   }
 }
 
-// POST - Create new contact info (admin only)
 export async function POST(request: NextRequest) {
   try {
     const session = await auth();
@@ -32,7 +31,6 @@ export async function POST(request: NextRequest) {
 
     const { address, phone, email, workingHours } = await request.json();
 
-    // Validate required fields
     if (!address || !phone || !email) {
       return NextResponse.json(
         { error: 'Address, phone, and email are required' },
@@ -40,18 +38,16 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // Delete existing contact info (we only want one record)
-    await pool.query('DELETE FROM ContactInfo');
+    await prisma.contactInfo.deleteMany();
 
-    // Create new contact info
-    const [result] = await pool.query(
-      'INSERT INTO ContactInfo (id, address, phone, email, workingHours, createdAt, updatedAt) VALUES (?, ?, ?, ?, ?, NOW(), NOW())',
-      [`contact_${Date.now()}`, address, phone, email, workingHours || null]
-    );
-
-    // Fetch the created record
-    const [rows] = await pool.query('SELECT * FROM ContactInfo ORDER BY createdAt DESC LIMIT 1');
-    const contactInfo = (rows as any[])[0];
+    const contactInfo = await prisma.contactInfo.create({
+      data: {
+        address,
+        phone,
+        email,
+        workingHours: workingHours || null
+      }
+    });
 
     return NextResponse.json(contactInfo);
   } catch (error) {
@@ -63,7 +59,6 @@ export async function POST(request: NextRequest) {
   }
 }
 
-// PUT - Update contact info (admin only)
 export async function PUT(request: NextRequest) {
   try {
     const session = await auth();
@@ -77,7 +72,6 @@ export async function PUT(request: NextRequest) {
 
     const { address, phone, email, workingHours } = await request.json();
 
-    // Validate required fields
     if (!address || !phone || !email) {
       return NextResponse.json(
         { error: 'Address, phone, and email are required' },
@@ -85,9 +79,7 @@ export async function PUT(request: NextRequest) {
       );
     }
 
-    // Find existing contact info
-    const [rows] = await pool.query('SELECT * FROM ContactInfo LIMIT 1');
-    const existingContactInfo = (rows as any[])[0];
+    const existingContactInfo = await prisma.contactInfo.findFirst();
 
     if (!existingContactInfo) {
       return NextResponse.json(
@@ -96,15 +88,15 @@ export async function PUT(request: NextRequest) {
       );
     }
 
-    // Update contact info
-    await pool.query(
-      'UPDATE ContactInfo SET address = ?, phone = ?, email = ?, workingHours = ?, updatedAt = NOW() WHERE id = ?',
-      [address, phone, email, workingHours || null, existingContactInfo.id]
-    );
-
-    // Fetch the updated record
-    const [updatedRows] = await pool.query('SELECT * FROM ContactInfo WHERE id = ?', [existingContactInfo.id]);
-    const contactInfo = (updatedRows as any[])[0];
+    const contactInfo = await prisma.contactInfo.update({
+      where: { id: existingContactInfo.id },
+      data: {
+        address,
+        phone,
+        email,
+        workingHours: workingHours || null,
+      }
+    });
 
     return NextResponse.json(contactInfo);
   } catch (error) {

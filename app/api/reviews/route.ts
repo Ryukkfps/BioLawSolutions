@@ -1,18 +1,13 @@
 import { NextRequest, NextResponse } from 'next/server';
-import pool from '@/lib/db';
+import { prisma } from '@/lib/prisma';
 import { auth } from '@/auth';
 
-// GET - Fetch reviews (public endpoint for approved reviews, admin endpoint for all reviews)
 export async function GET(request: NextRequest) {
   try {
     const { searchParams } = new URL(request.url);
     const adminView = searchParams.get('admin') === 'true';
     
-    let query = 'SELECT * FROM Review';
-    let params: any[] = [];
-
     if (adminView) {
-      // Admin view - check authentication
       const session = await auth();
       if (!session) {
         return NextResponse.json(
@@ -20,18 +15,17 @@ export async function GET(request: NextRequest) {
           { status: 401 }
         );
       }
-      // Show all reviews for admin
-      query += ' ORDER BY createdAt DESC';
+      const reviews = await prisma.review.findMany({
+        orderBy: { createdAt: 'desc' }
+      });
+      return NextResponse.json(reviews);
     } else {
-      // Public view - only approved reviews
-      query += ' WHERE isApproved = ? ORDER BY createdAt DESC';
-      params = [true];
+      const reviews = await prisma.review.findMany({
+        where: { isApproved: true },
+        orderBy: { createdAt: 'desc' }
+      });
+      return NextResponse.json(reviews);
     }
-
-    const [rows] = await pool.query(query, params);
-    const reviews = rows as any[];
-
-    return NextResponse.json(reviews);
   } catch (error) {
     console.error('Error fetching reviews:', error);
     return NextResponse.json(
@@ -41,12 +35,10 @@ export async function GET(request: NextRequest) {
   }
 }
 
-// POST - Create new review (public endpoint)
 export async function POST(request: NextRequest) {
   try {
     const { author, content, rating } = await request.json();
 
-    // Validate required fields
     if (!author || !content) {
       return NextResponse.json(
         { error: 'Author and content are required' },
@@ -54,7 +46,6 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // Validate rating
     const reviewRating = rating || 5;
     if (reviewRating < 1 || reviewRating > 5) {
       return NextResponse.json(
@@ -63,16 +54,14 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // Create new review
-    const reviewId = `review_${Date.now()}`;
-    await pool.query(
-      'INSERT INTO Review (id, author, content, rating, isApproved, createdAt) VALUES (?, ?, ?, ?, ?, NOW())',
-      [reviewId, author, content, reviewRating, false] // Default to not approved
-    );
-
-    // Fetch the created review
-    const [rows] = await pool.query('SELECT * FROM Review WHERE id = ?', [reviewId]);
-    const review = (rows as any[])[0];
+    const review = await prisma.review.create({
+      data: {
+        author,
+        content,
+        rating: reviewRating,
+        isApproved: false
+      }
+    });
 
     return NextResponse.json(review);
   } catch (error) {

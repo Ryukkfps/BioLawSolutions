@@ -1,23 +1,25 @@
-// For legacy compatibility, we'll keep a minimal Prisma setup
-// But the main application now uses mysql2 directly via /lib/db.ts
+import { PrismaClient } from "./prisma-client";
 
-import { PrismaClient } from "@prisma/client";
+// Ensure we are using the custom generated client
+export const prisma = new PrismaClient({
+  log: ["query", "error", "warn"],
+});
 
-// Simple fallback Prisma client (may not work with Prisma 7 constraints)
-// Main app should use mysql2 from /lib/db.ts instead
-let prisma: PrismaClient;
-
-try {
-  prisma = new PrismaClient({
-    log: ["error"],
-  });
-} catch (error) {
-  console.warn("Prisma client initialization failed, using mysql2 instead");
-  // Create a mock prisma object to prevent crashes
-  prisma = {} as PrismaClient;
+// Debug check for the Service model fields
+if (process.env.NODE_ENV !== "production") {
+  const globalForPrisma = global as unknown as { prisma: PrismaClient };
+  
+  // Force overwrite the global instance to ensure the new client is used in HMR
+  globalForPrisma.prisma = prisma;
+  
+  // Try to inspect the model structure if possible
+  try {
+    const dmmf = (prisma as any)._dmmf;
+    if (dmmf) {
+      const serviceModel = dmmf.modelMap?.Service || dmmf.datamodel?.models.find((m: any) => m.name === 'Service');
+      console.log('Service model fields in current Prisma instance:', serviceModel?.fields.map((f: any) => f.name));
+    }
+  } catch (e) {
+    // Ignore inspection errors
+  }
 }
-
-export { prisma };
-
-// Export the mysql2 pool as the primary database connection
-export { default as db } from "./db";

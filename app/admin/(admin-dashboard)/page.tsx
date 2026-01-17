@@ -1,8 +1,14 @@
-'use client';
-
 import Link from "next/link";
+import { auth } from '@/auth';
+import { redirect } from 'next/navigation';
 
-export default function AdminDashboard() {
+export default async function AdminDashboard() {
+  const session = await auth();
+
+  if (!session) {
+    redirect('/admin/login');
+  }
+
   return (
     <div className="min-h-screen bg-gray-50">
       <div className="bg-white shadow">
@@ -15,16 +21,6 @@ export default function AdminDashboard() {
               <p className="text-sm text-gray-600 mt-1">
                 Bio Law Solutions Management Panel
               </p>
-            </div>
-            <div>
-              <form action="/api/auth/signout" method="post">
-                <button
-                  type="submit"
-                  className="bg-red-600 text-white px-4 py-2 text-sm font-medium hover:bg-red-700 transition-colors rounded"
-                >
-                  Sign Out
-                </button>
-              </form>
             </div>
           </div>
         </div>

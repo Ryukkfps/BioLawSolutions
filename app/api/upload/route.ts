@@ -31,8 +31,8 @@ export async function POST(request: NextRequest) {
     const originalName = file.name.replace(/[^a-zA-Z0-9.-]/g, '_');
     const filename = `${timestamp}_${originalName}`;
 
-    // Create uploads directory if it doesn't exist
-    const uploadsDir = path.join(process.cwd(), 'public', 'uploads');
+    // Create uploads directory if it doesn't exist (outside public folder)
+    const uploadsDir = path.join(process.cwd(), 'uploads');
     try {
       await mkdir(uploadsDir, { recursive: true });
     } catch (error) {
@@ -43,8 +43,8 @@ export async function POST(request: NextRequest) {
     const filepath = path.join(uploadsDir, filename);
     await writeFile(filepath, buffer);
 
-    // Return the public URL path
-    const publicPath = `/uploads/${filename}`;
+    // Return the API URL path
+    const publicPath = `/api/uploads/${filename}`;
 
     return NextResponse.json({ 
       success: true, 

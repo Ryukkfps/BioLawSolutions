@@ -7,6 +7,7 @@ import { getUnavailableDates } from '@/lib/actions/appointments';
 interface UnavailableSlot {
   date: Date;
   time: string;
+  status: string;
 }
 
 export default function AppointmentForm() {

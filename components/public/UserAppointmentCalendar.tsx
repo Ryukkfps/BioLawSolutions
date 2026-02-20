@@ -9,6 +9,7 @@ import {
 interface UnavailableDate {
   date: Date;
   time: string;
+  status: string;
 }
 
 export default function UserAppointmentCalendar({ 

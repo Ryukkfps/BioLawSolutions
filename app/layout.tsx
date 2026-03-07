@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
-import Script from "next/script";
 import "./globals.css";
 import ConditionalHeader from "@/components/ConditionalHeader";
 import Footer from "@/components/Footer";
@@ -28,13 +27,13 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${geistSans.variable} ${geistMono.variable}`}>
       <head>
-        <Script
+        <script
           id="Cookiebot"
           src="https://consent.cookiebot.com/uc.js"
           data-cbid="3fc6772b-6a75-46b0-9a2b-09bab1c36ea4"
           data-blockingmode="auto"
-          strategy="beforeInteractive"
-        />
+          type="text/javascript"
+        ></script>
       </head>
       <body className="antialiased flex flex-col min-h-screen">
         <ConditionalHeader />

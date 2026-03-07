@@ -27,20 +27,23 @@ export default function ContactPage() {
           <div>
             <div className="bg-white rounded-xl shadow-lg p-8">
               <h2 className="text-2xl font-serif text-[#004d66] uppercase tracking-widest mb-6">
-                Send us a Message
+                Let’s Discuss Your Strategic Legal Needs
               </h2>
+              <p className='block text-md font-medium text-gray-700 mb-2'>
+                If your organisation operates within regulated healthcare and requires senior legal insight, we would welcome a conversation.
+              </p>
               <ContactForm />
             </div>
           </div>
 
           {/* Contact Information */}
           <div className="space-y-8">
-            <ContactInfo variant="card" showTitle={true} />
+            {/* <ContactInfo variant="card" showTitle={true} /> */}
             
             {/* Additional Information */}
             <div className="bg-white p-6 rounded-xl shadow-lg border border-gray-100">
               <h3 className="text-xl font-serif text-[#004d66] mb-4 uppercase tracking-widest">
-                Why Choose Bio Law Solutions?
+                Why Choose BioLaw Solutions?
               </h3>
               <div className="space-y-4 text-gray-700">
                 <div className="flex items-start space-x-3">
@@ -75,7 +78,7 @@ export default function ContactPage() {
             </div>
 
             {/* Emergency Contact */}
-            <div className="bg-red-50 border border-red-200 p-6 rounded-xl">
+            {/* <div className="bg-red-50 border border-red-200 p-6 rounded-xl">
               <h3 className="text-lg font-semibold text-red-800 mb-2">
                 Emergency Legal Assistance
               </h3>
@@ -92,12 +95,12 @@ export default function ContactPage() {
                 </svg>
                 Emergency Hotline
               </a>
-            </div>
+            </div> */}
           </div>
         </div>
 
         {/* Map Section (Placeholder) */}
-        <div className="mt-16">
+        {/* <div className="mt-16">
           <div className="bg-white rounded-xl shadow-lg overflow-hidden">
             <div className="p-6 border-b border-gray-200">
               <h3 className="text-xl font-serif text-[#004d66] uppercase tracking-widest">
@@ -117,7 +120,7 @@ export default function ContactPage() {
               </div>
             </div>
           </div>
-        </div>
+        </div> */}
       </div>
     </div>
   );

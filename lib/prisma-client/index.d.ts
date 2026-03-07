@@ -58,6 +58,16 @@ export type Content = $Result.DefaultSelection<Prisma.$ContentPayload>
  * 
  */
 export type AboutSection = $Result.DefaultSelection<Prisma.$AboutSectionPayload>
+/**
+ * Model LegalPage
+ * 
+ */
+export type LegalPage = $Result.DefaultSelection<Prisma.$LegalPagePayload>
+/**
+ * Model Sector
+ * 
+ */
+export type Sector = $Result.DefaultSelection<Prisma.$SectorPayload>
 
 /**
  * ##  Prisma Client ʲˢ
@@ -238,6 +248,26 @@ export class PrismaClient<
     * ```
     */
   get aboutSection(): Prisma.AboutSectionDelegate<ExtArgs>;
+
+  /**
+   * `prisma.legalPage`: Exposes CRUD operations for the **LegalPage** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more LegalPages
+    * const legalPages = await prisma.legalPage.findMany()
+    * ```
+    */
+  get legalPage(): Prisma.LegalPageDelegate<ExtArgs>;
+
+  /**
+   * `prisma.sector`: Exposes CRUD operations for the **Sector** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Sectors
+    * const sectors = await prisma.sector.findMany()
+    * ```
+    */
+  get sector(): Prisma.SectorDelegate<ExtArgs>;
 }
 
 export namespace Prisma {
@@ -687,7 +717,9 @@ export namespace Prisma {
     Review: 'Review',
     Appointment: 'Appointment',
     Content: 'Content',
-    AboutSection: 'AboutSection'
+    AboutSection: 'AboutSection',
+    LegalPage: 'LegalPage',
+    Sector: 'Sector'
   };
 
   export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -703,7 +735,7 @@ export namespace Prisma {
 
   export type TypeMap<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, ClientOptions = {}> = {
     meta: {
-      modelProps: "user" | "carouselSlide" | "service" | "contactInfo" | "enquiry" | "review" | "appointment" | "content" | "aboutSection"
+      modelProps: "user" | "carouselSlide" | "service" | "contactInfo" | "enquiry" | "review" | "appointment" | "content" | "aboutSection" | "legalPage" | "sector"
       txIsolationLevel: never
     }
     model: {
@@ -1370,6 +1402,154 @@ export namespace Prisma {
           count: {
             args: Prisma.AboutSectionCountArgs<ExtArgs>
             result: $Utils.Optional<AboutSectionCountAggregateOutputType> | number
+          }
+        }
+      }
+      LegalPage: {
+        payload: Prisma.$LegalPagePayload<ExtArgs>
+        fields: Prisma.LegalPageFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.LegalPageFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$LegalPagePayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.LegalPageFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$LegalPagePayload>
+          }
+          findFirst: {
+            args: Prisma.LegalPageFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$LegalPagePayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.LegalPageFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$LegalPagePayload>
+          }
+          findMany: {
+            args: Prisma.LegalPageFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$LegalPagePayload>[]
+          }
+          create: {
+            args: Prisma.LegalPageCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$LegalPagePayload>
+          }
+          createMany: {
+            args: Prisma.LegalPageCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          delete: {
+            args: Prisma.LegalPageDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$LegalPagePayload>
+          }
+          update: {
+            args: Prisma.LegalPageUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$LegalPagePayload>
+          }
+          deleteMany: {
+            args: Prisma.LegalPageDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.LegalPageUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          upsert: {
+            args: Prisma.LegalPageUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$LegalPagePayload>
+          }
+          aggregate: {
+            args: Prisma.LegalPageAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateLegalPage>
+          }
+          groupBy: {
+            args: Prisma.LegalPageGroupByArgs<ExtArgs>
+            result: $Utils.Optional<LegalPageGroupByOutputType>[]
+          }
+          findRaw: {
+            args: Prisma.LegalPageFindRawArgs<ExtArgs>
+            result: JsonObject
+          }
+          aggregateRaw: {
+            args: Prisma.LegalPageAggregateRawArgs<ExtArgs>
+            result: JsonObject
+          }
+          count: {
+            args: Prisma.LegalPageCountArgs<ExtArgs>
+            result: $Utils.Optional<LegalPageCountAggregateOutputType> | number
+          }
+        }
+      }
+      Sector: {
+        payload: Prisma.$SectorPayload<ExtArgs>
+        fields: Prisma.SectorFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.SectorFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SectorPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.SectorFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SectorPayload>
+          }
+          findFirst: {
+            args: Prisma.SectorFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SectorPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.SectorFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SectorPayload>
+          }
+          findMany: {
+            args: Prisma.SectorFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SectorPayload>[]
+          }
+          create: {
+            args: Prisma.SectorCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SectorPayload>
+          }
+          createMany: {
+            args: Prisma.SectorCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          delete: {
+            args: Prisma.SectorDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SectorPayload>
+          }
+          update: {
+            args: Prisma.SectorUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SectorPayload>
+          }
+          deleteMany: {
+            args: Prisma.SectorDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.SectorUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          upsert: {
+            args: Prisma.SectorUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SectorPayload>
+          }
+          aggregate: {
+            args: Prisma.SectorAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateSector>
+          }
+          groupBy: {
+            args: Prisma.SectorGroupByArgs<ExtArgs>
+            result: $Utils.Optional<SectorGroupByOutputType>[]
+          }
+          findRaw: {
+            args: Prisma.SectorFindRawArgs<ExtArgs>
+            result: JsonObject
+          }
+          aggregateRaw: {
+            args: Prisma.SectorAggregateRawArgs<ExtArgs>
+            result: JsonObject
+          }
+          count: {
+            args: Prisma.SectorCountArgs<ExtArgs>
+            result: $Utils.Optional<SectorCountAggregateOutputType> | number
           }
         }
       }
@@ -10100,6 +10280,1940 @@ export namespace Prisma {
 
 
   /**
+   * Model LegalPage
+   */
+
+  export type AggregateLegalPage = {
+    _count: LegalPageCountAggregateOutputType | null
+    _min: LegalPageMinAggregateOutputType | null
+    _max: LegalPageMaxAggregateOutputType | null
+  }
+
+  export type LegalPageMinAggregateOutputType = {
+    id: string | null
+    slug: string | null
+    title: string | null
+    content: string | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type LegalPageMaxAggregateOutputType = {
+    id: string | null
+    slug: string | null
+    title: string | null
+    content: string | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type LegalPageCountAggregateOutputType = {
+    id: number
+    slug: number
+    title: number
+    content: number
+    createdAt: number
+    updatedAt: number
+    _all: number
+  }
+
+
+  export type LegalPageMinAggregateInputType = {
+    id?: true
+    slug?: true
+    title?: true
+    content?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type LegalPageMaxAggregateInputType = {
+    id?: true
+    slug?: true
+    title?: true
+    content?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type LegalPageCountAggregateInputType = {
+    id?: true
+    slug?: true
+    title?: true
+    content?: true
+    createdAt?: true
+    updatedAt?: true
+    _all?: true
+  }
+
+  export type LegalPageAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which LegalPage to aggregate.
+     */
+    where?: LegalPageWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of LegalPages to fetch.
+     */
+    orderBy?: LegalPageOrderByWithRelationInput | LegalPageOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: LegalPageWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` LegalPages from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` LegalPages.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned LegalPages
+    **/
+    _count?: true | LegalPageCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: LegalPageMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: LegalPageMaxAggregateInputType
+  }
+
+  export type GetLegalPageAggregateType<T extends LegalPageAggregateArgs> = {
+        [P in keyof T & keyof AggregateLegalPage]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateLegalPage[P]>
+      : GetScalarType<T[P], AggregateLegalPage[P]>
+  }
+
+
+
+
+  export type LegalPageGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: LegalPageWhereInput
+    orderBy?: LegalPageOrderByWithAggregationInput | LegalPageOrderByWithAggregationInput[]
+    by: LegalPageScalarFieldEnum[] | LegalPageScalarFieldEnum
+    having?: LegalPageScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: LegalPageCountAggregateInputType | true
+    _min?: LegalPageMinAggregateInputType
+    _max?: LegalPageMaxAggregateInputType
+  }
+
+  export type LegalPageGroupByOutputType = {
+    id: string
+    slug: string
+    title: string
+    content: string
+    createdAt: Date
+    updatedAt: Date
+    _count: LegalPageCountAggregateOutputType | null
+    _min: LegalPageMinAggregateOutputType | null
+    _max: LegalPageMaxAggregateOutputType | null
+  }
+
+  type GetLegalPageGroupByPayload<T extends LegalPageGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<LegalPageGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof LegalPageGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], LegalPageGroupByOutputType[P]>
+            : GetScalarType<T[P], LegalPageGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type LegalPageSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    slug?: boolean
+    title?: boolean
+    content?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }, ExtArgs["result"]["legalPage"]>
+
+
+  export type LegalPageSelectScalar = {
+    id?: boolean
+    slug?: boolean
+    title?: boolean
+    content?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }
+
+
+  export type $LegalPagePayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "LegalPage"
+    objects: {}
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      slug: string
+      title: string
+      content: string
+      createdAt: Date
+      updatedAt: Date
+    }, ExtArgs["result"]["legalPage"]>
+    composites: {}
+  }
+
+  type LegalPageGetPayload<S extends boolean | null | undefined | LegalPageDefaultArgs> = $Result.GetResult<Prisma.$LegalPagePayload, S>
+
+  type LegalPageCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = 
+    Omit<LegalPageFindManyArgs, 'select' | 'include' | 'distinct'> & {
+      select?: LegalPageCountAggregateInputType | true
+    }
+
+  export interface LegalPageDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['LegalPage'], meta: { name: 'LegalPage' } }
+    /**
+     * Find zero or one LegalPage that matches the filter.
+     * @param {LegalPageFindUniqueArgs} args - Arguments to find a LegalPage
+     * @example
+     * // Get one LegalPage
+     * const legalPage = await prisma.legalPage.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends LegalPageFindUniqueArgs>(args: SelectSubset<T, LegalPageFindUniqueArgs<ExtArgs>>): Prisma__LegalPageClient<$Result.GetResult<Prisma.$LegalPagePayload<ExtArgs>, T, "findUnique"> | null, null, ExtArgs>
+
+    /**
+     * Find one LegalPage that matches the filter or throw an error with `error.code='P2025'` 
+     * if no matches were found.
+     * @param {LegalPageFindUniqueOrThrowArgs} args - Arguments to find a LegalPage
+     * @example
+     * // Get one LegalPage
+     * const legalPage = await prisma.legalPage.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends LegalPageFindUniqueOrThrowArgs>(args: SelectSubset<T, LegalPageFindUniqueOrThrowArgs<ExtArgs>>): Prisma__LegalPageClient<$Result.GetResult<Prisma.$LegalPagePayload<ExtArgs>, T, "findUniqueOrThrow">, never, ExtArgs>
+
+    /**
+     * Find the first LegalPage that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {LegalPageFindFirstArgs} args - Arguments to find a LegalPage
+     * @example
+     * // Get one LegalPage
+     * const legalPage = await prisma.legalPage.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends LegalPageFindFirstArgs>(args?: SelectSubset<T, LegalPageFindFirstArgs<ExtArgs>>): Prisma__LegalPageClient<$Result.GetResult<Prisma.$LegalPagePayload<ExtArgs>, T, "findFirst"> | null, null, ExtArgs>
+
+    /**
+     * Find the first LegalPage that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {LegalPageFindFirstOrThrowArgs} args - Arguments to find a LegalPage
+     * @example
+     * // Get one LegalPage
+     * const legalPage = await prisma.legalPage.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends LegalPageFindFirstOrThrowArgs>(args?: SelectSubset<T, LegalPageFindFirstOrThrowArgs<ExtArgs>>): Prisma__LegalPageClient<$Result.GetResult<Prisma.$LegalPagePayload<ExtArgs>, T, "findFirstOrThrow">, never, ExtArgs>
+
+    /**
+     * Find zero or more LegalPages that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {LegalPageFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all LegalPages
+     * const legalPages = await prisma.legalPage.findMany()
+     * 
+     * // Get first 10 LegalPages
+     * const legalPages = await prisma.legalPage.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const legalPageWithIdOnly = await prisma.legalPage.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends LegalPageFindManyArgs>(args?: SelectSubset<T, LegalPageFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$LegalPagePayload<ExtArgs>, T, "findMany">>
+
+    /**
+     * Create a LegalPage.
+     * @param {LegalPageCreateArgs} args - Arguments to create a LegalPage.
+     * @example
+     * // Create one LegalPage
+     * const LegalPage = await prisma.legalPage.create({
+     *   data: {
+     *     // ... data to create a LegalPage
+     *   }
+     * })
+     * 
+     */
+    create<T extends LegalPageCreateArgs>(args: SelectSubset<T, LegalPageCreateArgs<ExtArgs>>): Prisma__LegalPageClient<$Result.GetResult<Prisma.$LegalPagePayload<ExtArgs>, T, "create">, never, ExtArgs>
+
+    /**
+     * Create many LegalPages.
+     * @param {LegalPageCreateManyArgs} args - Arguments to create many LegalPages.
+     * @example
+     * // Create many LegalPages
+     * const legalPage = await prisma.legalPage.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends LegalPageCreateManyArgs>(args?: SelectSubset<T, LegalPageCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Delete a LegalPage.
+     * @param {LegalPageDeleteArgs} args - Arguments to delete one LegalPage.
+     * @example
+     * // Delete one LegalPage
+     * const LegalPage = await prisma.legalPage.delete({
+     *   where: {
+     *     // ... filter to delete one LegalPage
+     *   }
+     * })
+     * 
+     */
+    delete<T extends LegalPageDeleteArgs>(args: SelectSubset<T, LegalPageDeleteArgs<ExtArgs>>): Prisma__LegalPageClient<$Result.GetResult<Prisma.$LegalPagePayload<ExtArgs>, T, "delete">, never, ExtArgs>
+
+    /**
+     * Update one LegalPage.
+     * @param {LegalPageUpdateArgs} args - Arguments to update one LegalPage.
+     * @example
+     * // Update one LegalPage
+     * const legalPage = await prisma.legalPage.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends LegalPageUpdateArgs>(args: SelectSubset<T, LegalPageUpdateArgs<ExtArgs>>): Prisma__LegalPageClient<$Result.GetResult<Prisma.$LegalPagePayload<ExtArgs>, T, "update">, never, ExtArgs>
+
+    /**
+     * Delete zero or more LegalPages.
+     * @param {LegalPageDeleteManyArgs} args - Arguments to filter LegalPages to delete.
+     * @example
+     * // Delete a few LegalPages
+     * const { count } = await prisma.legalPage.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends LegalPageDeleteManyArgs>(args?: SelectSubset<T, LegalPageDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more LegalPages.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {LegalPageUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many LegalPages
+     * const legalPage = await prisma.legalPage.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends LegalPageUpdateManyArgs>(args: SelectSubset<T, LegalPageUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create or update one LegalPage.
+     * @param {LegalPageUpsertArgs} args - Arguments to update or create a LegalPage.
+     * @example
+     * // Update or create a LegalPage
+     * const legalPage = await prisma.legalPage.upsert({
+     *   create: {
+     *     // ... data to create a LegalPage
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the LegalPage we want to update
+     *   }
+     * })
+     */
+    upsert<T extends LegalPageUpsertArgs>(args: SelectSubset<T, LegalPageUpsertArgs<ExtArgs>>): Prisma__LegalPageClient<$Result.GetResult<Prisma.$LegalPagePayload<ExtArgs>, T, "upsert">, never, ExtArgs>
+
+    /**
+     * Find zero or more LegalPages that matches the filter.
+     * @param {LegalPageFindRawArgs} args - Select which filters you would like to apply.
+     * @example
+     * const legalPage = await prisma.legalPage.findRaw({
+     *   filter: { age: { $gt: 25 } } 
+     * })
+     */
+    findRaw(args?: LegalPageFindRawArgs): Prisma.PrismaPromise<JsonObject>
+
+    /**
+     * Perform aggregation operations on a LegalPage.
+     * @param {LegalPageAggregateRawArgs} args - Select which aggregations you would like to apply.
+     * @example
+     * const legalPage = await prisma.legalPage.aggregateRaw({
+     *   pipeline: [
+     *     { $match: { status: "registered" } },
+     *     { $group: { _id: "$country", total: { $sum: 1 } } }
+     *   ]
+     * })
+     */
+    aggregateRaw(args?: LegalPageAggregateRawArgs): Prisma.PrismaPromise<JsonObject>
+
+
+    /**
+     * Count the number of LegalPages.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {LegalPageCountArgs} args - Arguments to filter LegalPages to count.
+     * @example
+     * // Count the number of LegalPages
+     * const count = await prisma.legalPage.count({
+     *   where: {
+     *     // ... the filter for the LegalPages we want to count
+     *   }
+     * })
+    **/
+    count<T extends LegalPageCountArgs>(
+      args?: Subset<T, LegalPageCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], LegalPageCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a LegalPage.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {LegalPageAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends LegalPageAggregateArgs>(args: Subset<T, LegalPageAggregateArgs>): Prisma.PrismaPromise<GetLegalPageAggregateType<T>>
+
+    /**
+     * Group by LegalPage.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {LegalPageGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends LegalPageGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: LegalPageGroupByArgs['orderBy'] }
+        : { orderBy?: LegalPageGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, LegalPageGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetLegalPageGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the LegalPage model
+   */
+  readonly fields: LegalPageFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for LegalPage.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__LegalPageClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the LegalPage model
+   */ 
+  interface LegalPageFieldRefs {
+    readonly id: FieldRef<"LegalPage", 'String'>
+    readonly slug: FieldRef<"LegalPage", 'String'>
+    readonly title: FieldRef<"LegalPage", 'String'>
+    readonly content: FieldRef<"LegalPage", 'String'>
+    readonly createdAt: FieldRef<"LegalPage", 'DateTime'>
+    readonly updatedAt: FieldRef<"LegalPage", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * LegalPage findUnique
+   */
+  export type LegalPageFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the LegalPage
+     */
+    select?: LegalPageSelect<ExtArgs> | null
+    /**
+     * Filter, which LegalPage to fetch.
+     */
+    where: LegalPageWhereUniqueInput
+  }
+
+  /**
+   * LegalPage findUniqueOrThrow
+   */
+  export type LegalPageFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the LegalPage
+     */
+    select?: LegalPageSelect<ExtArgs> | null
+    /**
+     * Filter, which LegalPage to fetch.
+     */
+    where: LegalPageWhereUniqueInput
+  }
+
+  /**
+   * LegalPage findFirst
+   */
+  export type LegalPageFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the LegalPage
+     */
+    select?: LegalPageSelect<ExtArgs> | null
+    /**
+     * Filter, which LegalPage to fetch.
+     */
+    where?: LegalPageWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of LegalPages to fetch.
+     */
+    orderBy?: LegalPageOrderByWithRelationInput | LegalPageOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for LegalPages.
+     */
+    cursor?: LegalPageWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` LegalPages from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` LegalPages.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of LegalPages.
+     */
+    distinct?: LegalPageScalarFieldEnum | LegalPageScalarFieldEnum[]
+  }
+
+  /**
+   * LegalPage findFirstOrThrow
+   */
+  export type LegalPageFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the LegalPage
+     */
+    select?: LegalPageSelect<ExtArgs> | null
+    /**
+     * Filter, which LegalPage to fetch.
+     */
+    where?: LegalPageWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of LegalPages to fetch.
+     */
+    orderBy?: LegalPageOrderByWithRelationInput | LegalPageOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for LegalPages.
+     */
+    cursor?: LegalPageWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` LegalPages from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` LegalPages.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of LegalPages.
+     */
+    distinct?: LegalPageScalarFieldEnum | LegalPageScalarFieldEnum[]
+  }
+
+  /**
+   * LegalPage findMany
+   */
+  export type LegalPageFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the LegalPage
+     */
+    select?: LegalPageSelect<ExtArgs> | null
+    /**
+     * Filter, which LegalPages to fetch.
+     */
+    where?: LegalPageWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of LegalPages to fetch.
+     */
+    orderBy?: LegalPageOrderByWithRelationInput | LegalPageOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing LegalPages.
+     */
+    cursor?: LegalPageWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` LegalPages from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` LegalPages.
+     */
+    skip?: number
+    distinct?: LegalPageScalarFieldEnum | LegalPageScalarFieldEnum[]
+  }
+
+  /**
+   * LegalPage create
+   */
+  export type LegalPageCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the LegalPage
+     */
+    select?: LegalPageSelect<ExtArgs> | null
+    /**
+     * The data needed to create a LegalPage.
+     */
+    data: XOR<LegalPageCreateInput, LegalPageUncheckedCreateInput>
+  }
+
+  /**
+   * LegalPage createMany
+   */
+  export type LegalPageCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many LegalPages.
+     */
+    data: LegalPageCreateManyInput | LegalPageCreateManyInput[]
+  }
+
+  /**
+   * LegalPage update
+   */
+  export type LegalPageUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the LegalPage
+     */
+    select?: LegalPageSelect<ExtArgs> | null
+    /**
+     * The data needed to update a LegalPage.
+     */
+    data: XOR<LegalPageUpdateInput, LegalPageUncheckedUpdateInput>
+    /**
+     * Choose, which LegalPage to update.
+     */
+    where: LegalPageWhereUniqueInput
+  }
+
+  /**
+   * LegalPage updateMany
+   */
+  export type LegalPageUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update LegalPages.
+     */
+    data: XOR<LegalPageUpdateManyMutationInput, LegalPageUncheckedUpdateManyInput>
+    /**
+     * Filter which LegalPages to update
+     */
+    where?: LegalPageWhereInput
+  }
+
+  /**
+   * LegalPage upsert
+   */
+  export type LegalPageUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the LegalPage
+     */
+    select?: LegalPageSelect<ExtArgs> | null
+    /**
+     * The filter to search for the LegalPage to update in case it exists.
+     */
+    where: LegalPageWhereUniqueInput
+    /**
+     * In case the LegalPage found by the `where` argument doesn't exist, create a new LegalPage with this data.
+     */
+    create: XOR<LegalPageCreateInput, LegalPageUncheckedCreateInput>
+    /**
+     * In case the LegalPage was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<LegalPageUpdateInput, LegalPageUncheckedUpdateInput>
+  }
+
+  /**
+   * LegalPage delete
+   */
+  export type LegalPageDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the LegalPage
+     */
+    select?: LegalPageSelect<ExtArgs> | null
+    /**
+     * Filter which LegalPage to delete.
+     */
+    where: LegalPageWhereUniqueInput
+  }
+
+  /**
+   * LegalPage deleteMany
+   */
+  export type LegalPageDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which LegalPages to delete
+     */
+    where?: LegalPageWhereInput
+  }
+
+  /**
+   * LegalPage findRaw
+   */
+  export type LegalPageFindRawArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The query predicate filter. If unspecified, then all documents in the collection will match the predicate. ${@link https://docs.mongodb.com/manual/reference/operator/query MongoDB Docs}.
+     */
+    filter?: InputJsonValue
+    /**
+     * Additional options to pass to the `find` command ${@link https://docs.mongodb.com/manual/reference/command/find/#command-fields MongoDB Docs}.
+     */
+    options?: InputJsonValue
+  }
+
+  /**
+   * LegalPage aggregateRaw
+   */
+  export type LegalPageAggregateRawArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * An array of aggregation stages to process and transform the document stream via the aggregation pipeline. ${@link https://docs.mongodb.com/manual/reference/operator/aggregation-pipeline MongoDB Docs}.
+     */
+    pipeline?: InputJsonValue[]
+    /**
+     * Additional options to pass to the `aggregate` command ${@link https://docs.mongodb.com/manual/reference/command/aggregate/#command-fields MongoDB Docs}.
+     */
+    options?: InputJsonValue
+  }
+
+  /**
+   * LegalPage without action
+   */
+  export type LegalPageDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the LegalPage
+     */
+    select?: LegalPageSelect<ExtArgs> | null
+  }
+
+
+  /**
+   * Model Sector
+   */
+
+  export type AggregateSector = {
+    _count: SectorCountAggregateOutputType | null
+    _avg: SectorAvgAggregateOutputType | null
+    _sum: SectorSumAggregateOutputType | null
+    _min: SectorMinAggregateOutputType | null
+    _max: SectorMaxAggregateOutputType | null
+  }
+
+  export type SectorAvgAggregateOutputType = {
+    overlayOpacity: number | null
+    order: number | null
+  }
+
+  export type SectorSumAggregateOutputType = {
+    overlayOpacity: number | null
+    order: number | null
+  }
+
+  export type SectorMinAggregateOutputType = {
+    id: string | null
+    title: string | null
+    subtitle: string | null
+    description: string | null
+    detailedDescription: string | null
+    backgroundImage: string | null
+    ctaText: string | null
+    ctaLink: string | null
+    textColor: string | null
+    overlayOpacity: number | null
+    styleType: string | null
+    icon: string | null
+    order: number | null
+    isActive: boolean | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type SectorMaxAggregateOutputType = {
+    id: string | null
+    title: string | null
+    subtitle: string | null
+    description: string | null
+    detailedDescription: string | null
+    backgroundImage: string | null
+    ctaText: string | null
+    ctaLink: string | null
+    textColor: string | null
+    overlayOpacity: number | null
+    styleType: string | null
+    icon: string | null
+    order: number | null
+    isActive: boolean | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type SectorCountAggregateOutputType = {
+    id: number
+    title: number
+    subtitle: number
+    description: number
+    detailedDescription: number
+    backgroundImage: number
+    ctaText: number
+    ctaLink: number
+    textColor: number
+    overlayOpacity: number
+    styleType: number
+    icon: number
+    order: number
+    isActive: number
+    createdAt: number
+    updatedAt: number
+    _all: number
+  }
+
+
+  export type SectorAvgAggregateInputType = {
+    overlayOpacity?: true
+    order?: true
+  }
+
+  export type SectorSumAggregateInputType = {
+    overlayOpacity?: true
+    order?: true
+  }
+
+  export type SectorMinAggregateInputType = {
+    id?: true
+    title?: true
+    subtitle?: true
+    description?: true
+    detailedDescription?: true
+    backgroundImage?: true
+    ctaText?: true
+    ctaLink?: true
+    textColor?: true
+    overlayOpacity?: true
+    styleType?: true
+    icon?: true
+    order?: true
+    isActive?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type SectorMaxAggregateInputType = {
+    id?: true
+    title?: true
+    subtitle?: true
+    description?: true
+    detailedDescription?: true
+    backgroundImage?: true
+    ctaText?: true
+    ctaLink?: true
+    textColor?: true
+    overlayOpacity?: true
+    styleType?: true
+    icon?: true
+    order?: true
+    isActive?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type SectorCountAggregateInputType = {
+    id?: true
+    title?: true
+    subtitle?: true
+    description?: true
+    detailedDescription?: true
+    backgroundImage?: true
+    ctaText?: true
+    ctaLink?: true
+    textColor?: true
+    overlayOpacity?: true
+    styleType?: true
+    icon?: true
+    order?: true
+    isActive?: true
+    createdAt?: true
+    updatedAt?: true
+    _all?: true
+  }
+
+  export type SectorAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Sector to aggregate.
+     */
+    where?: SectorWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Sectors to fetch.
+     */
+    orderBy?: SectorOrderByWithRelationInput | SectorOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: SectorWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Sectors from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Sectors.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned Sectors
+    **/
+    _count?: true | SectorCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: SectorAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: SectorSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: SectorMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: SectorMaxAggregateInputType
+  }
+
+  export type GetSectorAggregateType<T extends SectorAggregateArgs> = {
+        [P in keyof T & keyof AggregateSector]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateSector[P]>
+      : GetScalarType<T[P], AggregateSector[P]>
+  }
+
+
+
+
+  export type SectorGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: SectorWhereInput
+    orderBy?: SectorOrderByWithAggregationInput | SectorOrderByWithAggregationInput[]
+    by: SectorScalarFieldEnum[] | SectorScalarFieldEnum
+    having?: SectorScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: SectorCountAggregateInputType | true
+    _avg?: SectorAvgAggregateInputType
+    _sum?: SectorSumAggregateInputType
+    _min?: SectorMinAggregateInputType
+    _max?: SectorMaxAggregateInputType
+  }
+
+  export type SectorGroupByOutputType = {
+    id: string
+    title: string
+    subtitle: string | null
+    description: string
+    detailedDescription: string | null
+    backgroundImage: string | null
+    ctaText: string | null
+    ctaLink: string | null
+    textColor: string
+    overlayOpacity: number
+    styleType: string
+    icon: string | null
+    order: number
+    isActive: boolean
+    createdAt: Date
+    updatedAt: Date
+    _count: SectorCountAggregateOutputType | null
+    _avg: SectorAvgAggregateOutputType | null
+    _sum: SectorSumAggregateOutputType | null
+    _min: SectorMinAggregateOutputType | null
+    _max: SectorMaxAggregateOutputType | null
+  }
+
+  type GetSectorGroupByPayload<T extends SectorGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<SectorGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof SectorGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], SectorGroupByOutputType[P]>
+            : GetScalarType<T[P], SectorGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type SectorSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    title?: boolean
+    subtitle?: boolean
+    description?: boolean
+    detailedDescription?: boolean
+    backgroundImage?: boolean
+    ctaText?: boolean
+    ctaLink?: boolean
+    textColor?: boolean
+    overlayOpacity?: boolean
+    styleType?: boolean
+    icon?: boolean
+    order?: boolean
+    isActive?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }, ExtArgs["result"]["sector"]>
+
+
+  export type SectorSelectScalar = {
+    id?: boolean
+    title?: boolean
+    subtitle?: boolean
+    description?: boolean
+    detailedDescription?: boolean
+    backgroundImage?: boolean
+    ctaText?: boolean
+    ctaLink?: boolean
+    textColor?: boolean
+    overlayOpacity?: boolean
+    styleType?: boolean
+    icon?: boolean
+    order?: boolean
+    isActive?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }
+
+
+  export type $SectorPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "Sector"
+    objects: {}
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      title: string
+      subtitle: string | null
+      description: string
+      detailedDescription: string | null
+      backgroundImage: string | null
+      ctaText: string | null
+      ctaLink: string | null
+      textColor: string
+      overlayOpacity: number
+      styleType: string
+      icon: string | null
+      order: number
+      isActive: boolean
+      createdAt: Date
+      updatedAt: Date
+    }, ExtArgs["result"]["sector"]>
+    composites: {}
+  }
+
+  type SectorGetPayload<S extends boolean | null | undefined | SectorDefaultArgs> = $Result.GetResult<Prisma.$SectorPayload, S>
+
+  type SectorCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = 
+    Omit<SectorFindManyArgs, 'select' | 'include' | 'distinct'> & {
+      select?: SectorCountAggregateInputType | true
+    }
+
+  export interface SectorDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['Sector'], meta: { name: 'Sector' } }
+    /**
+     * Find zero or one Sector that matches the filter.
+     * @param {SectorFindUniqueArgs} args - Arguments to find a Sector
+     * @example
+     * // Get one Sector
+     * const sector = await prisma.sector.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends SectorFindUniqueArgs>(args: SelectSubset<T, SectorFindUniqueArgs<ExtArgs>>): Prisma__SectorClient<$Result.GetResult<Prisma.$SectorPayload<ExtArgs>, T, "findUnique"> | null, null, ExtArgs>
+
+    /**
+     * Find one Sector that matches the filter or throw an error with `error.code='P2025'` 
+     * if no matches were found.
+     * @param {SectorFindUniqueOrThrowArgs} args - Arguments to find a Sector
+     * @example
+     * // Get one Sector
+     * const sector = await prisma.sector.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends SectorFindUniqueOrThrowArgs>(args: SelectSubset<T, SectorFindUniqueOrThrowArgs<ExtArgs>>): Prisma__SectorClient<$Result.GetResult<Prisma.$SectorPayload<ExtArgs>, T, "findUniqueOrThrow">, never, ExtArgs>
+
+    /**
+     * Find the first Sector that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {SectorFindFirstArgs} args - Arguments to find a Sector
+     * @example
+     * // Get one Sector
+     * const sector = await prisma.sector.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends SectorFindFirstArgs>(args?: SelectSubset<T, SectorFindFirstArgs<ExtArgs>>): Prisma__SectorClient<$Result.GetResult<Prisma.$SectorPayload<ExtArgs>, T, "findFirst"> | null, null, ExtArgs>
+
+    /**
+     * Find the first Sector that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {SectorFindFirstOrThrowArgs} args - Arguments to find a Sector
+     * @example
+     * // Get one Sector
+     * const sector = await prisma.sector.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends SectorFindFirstOrThrowArgs>(args?: SelectSubset<T, SectorFindFirstOrThrowArgs<ExtArgs>>): Prisma__SectorClient<$Result.GetResult<Prisma.$SectorPayload<ExtArgs>, T, "findFirstOrThrow">, never, ExtArgs>
+
+    /**
+     * Find zero or more Sectors that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {SectorFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all Sectors
+     * const sectors = await prisma.sector.findMany()
+     * 
+     * // Get first 10 Sectors
+     * const sectors = await prisma.sector.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const sectorWithIdOnly = await prisma.sector.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends SectorFindManyArgs>(args?: SelectSubset<T, SectorFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$SectorPayload<ExtArgs>, T, "findMany">>
+
+    /**
+     * Create a Sector.
+     * @param {SectorCreateArgs} args - Arguments to create a Sector.
+     * @example
+     * // Create one Sector
+     * const Sector = await prisma.sector.create({
+     *   data: {
+     *     // ... data to create a Sector
+     *   }
+     * })
+     * 
+     */
+    create<T extends SectorCreateArgs>(args: SelectSubset<T, SectorCreateArgs<ExtArgs>>): Prisma__SectorClient<$Result.GetResult<Prisma.$SectorPayload<ExtArgs>, T, "create">, never, ExtArgs>
+
+    /**
+     * Create many Sectors.
+     * @param {SectorCreateManyArgs} args - Arguments to create many Sectors.
+     * @example
+     * // Create many Sectors
+     * const sector = await prisma.sector.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends SectorCreateManyArgs>(args?: SelectSubset<T, SectorCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Delete a Sector.
+     * @param {SectorDeleteArgs} args - Arguments to delete one Sector.
+     * @example
+     * // Delete one Sector
+     * const Sector = await prisma.sector.delete({
+     *   where: {
+     *     // ... filter to delete one Sector
+     *   }
+     * })
+     * 
+     */
+    delete<T extends SectorDeleteArgs>(args: SelectSubset<T, SectorDeleteArgs<ExtArgs>>): Prisma__SectorClient<$Result.GetResult<Prisma.$SectorPayload<ExtArgs>, T, "delete">, never, ExtArgs>
+
+    /**
+     * Update one Sector.
+     * @param {SectorUpdateArgs} args - Arguments to update one Sector.
+     * @example
+     * // Update one Sector
+     * const sector = await prisma.sector.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends SectorUpdateArgs>(args: SelectSubset<T, SectorUpdateArgs<ExtArgs>>): Prisma__SectorClient<$Result.GetResult<Prisma.$SectorPayload<ExtArgs>, T, "update">, never, ExtArgs>
+
+    /**
+     * Delete zero or more Sectors.
+     * @param {SectorDeleteManyArgs} args - Arguments to filter Sectors to delete.
+     * @example
+     * // Delete a few Sectors
+     * const { count } = await prisma.sector.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends SectorDeleteManyArgs>(args?: SelectSubset<T, SectorDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Sectors.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {SectorUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many Sectors
+     * const sector = await prisma.sector.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends SectorUpdateManyArgs>(args: SelectSubset<T, SectorUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create or update one Sector.
+     * @param {SectorUpsertArgs} args - Arguments to update or create a Sector.
+     * @example
+     * // Update or create a Sector
+     * const sector = await prisma.sector.upsert({
+     *   create: {
+     *     // ... data to create a Sector
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the Sector we want to update
+     *   }
+     * })
+     */
+    upsert<T extends SectorUpsertArgs>(args: SelectSubset<T, SectorUpsertArgs<ExtArgs>>): Prisma__SectorClient<$Result.GetResult<Prisma.$SectorPayload<ExtArgs>, T, "upsert">, never, ExtArgs>
+
+    /**
+     * Find zero or more Sectors that matches the filter.
+     * @param {SectorFindRawArgs} args - Select which filters you would like to apply.
+     * @example
+     * const sector = await prisma.sector.findRaw({
+     *   filter: { age: { $gt: 25 } } 
+     * })
+     */
+    findRaw(args?: SectorFindRawArgs): Prisma.PrismaPromise<JsonObject>
+
+    /**
+     * Perform aggregation operations on a Sector.
+     * @param {SectorAggregateRawArgs} args - Select which aggregations you would like to apply.
+     * @example
+     * const sector = await prisma.sector.aggregateRaw({
+     *   pipeline: [
+     *     { $match: { status: "registered" } },
+     *     { $group: { _id: "$country", total: { $sum: 1 } } }
+     *   ]
+     * })
+     */
+    aggregateRaw(args?: SectorAggregateRawArgs): Prisma.PrismaPromise<JsonObject>
+
+
+    /**
+     * Count the number of Sectors.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {SectorCountArgs} args - Arguments to filter Sectors to count.
+     * @example
+     * // Count the number of Sectors
+     * const count = await prisma.sector.count({
+     *   where: {
+     *     // ... the filter for the Sectors we want to count
+     *   }
+     * })
+    **/
+    count<T extends SectorCountArgs>(
+      args?: Subset<T, SectorCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], SectorCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a Sector.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {SectorAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends SectorAggregateArgs>(args: Subset<T, SectorAggregateArgs>): Prisma.PrismaPromise<GetSectorAggregateType<T>>
+
+    /**
+     * Group by Sector.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {SectorGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends SectorGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: SectorGroupByArgs['orderBy'] }
+        : { orderBy?: SectorGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, SectorGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetSectorGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the Sector model
+   */
+  readonly fields: SectorFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for Sector.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__SectorClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the Sector model
+   */ 
+  interface SectorFieldRefs {
+    readonly id: FieldRef<"Sector", 'String'>
+    readonly title: FieldRef<"Sector", 'String'>
+    readonly subtitle: FieldRef<"Sector", 'String'>
+    readonly description: FieldRef<"Sector", 'String'>
+    readonly detailedDescription: FieldRef<"Sector", 'String'>
+    readonly backgroundImage: FieldRef<"Sector", 'String'>
+    readonly ctaText: FieldRef<"Sector", 'String'>
+    readonly ctaLink: FieldRef<"Sector", 'String'>
+    readonly textColor: FieldRef<"Sector", 'String'>
+    readonly overlayOpacity: FieldRef<"Sector", 'Float'>
+    readonly styleType: FieldRef<"Sector", 'String'>
+    readonly icon: FieldRef<"Sector", 'String'>
+    readonly order: FieldRef<"Sector", 'Int'>
+    readonly isActive: FieldRef<"Sector", 'Boolean'>
+    readonly createdAt: FieldRef<"Sector", 'DateTime'>
+    readonly updatedAt: FieldRef<"Sector", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * Sector findUnique
+   */
+  export type SectorFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Sector
+     */
+    select?: SectorSelect<ExtArgs> | null
+    /**
+     * Filter, which Sector to fetch.
+     */
+    where: SectorWhereUniqueInput
+  }
+
+  /**
+   * Sector findUniqueOrThrow
+   */
+  export type SectorFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Sector
+     */
+    select?: SectorSelect<ExtArgs> | null
+    /**
+     * Filter, which Sector to fetch.
+     */
+    where: SectorWhereUniqueInput
+  }
+
+  /**
+   * Sector findFirst
+   */
+  export type SectorFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Sector
+     */
+    select?: SectorSelect<ExtArgs> | null
+    /**
+     * Filter, which Sector to fetch.
+     */
+    where?: SectorWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Sectors to fetch.
+     */
+    orderBy?: SectorOrderByWithRelationInput | SectorOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Sectors.
+     */
+    cursor?: SectorWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Sectors from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Sectors.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Sectors.
+     */
+    distinct?: SectorScalarFieldEnum | SectorScalarFieldEnum[]
+  }
+
+  /**
+   * Sector findFirstOrThrow
+   */
+  export type SectorFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Sector
+     */
+    select?: SectorSelect<ExtArgs> | null
+    /**
+     * Filter, which Sector to fetch.
+     */
+    where?: SectorWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Sectors to fetch.
+     */
+    orderBy?: SectorOrderByWithRelationInput | SectorOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Sectors.
+     */
+    cursor?: SectorWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Sectors from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Sectors.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Sectors.
+     */
+    distinct?: SectorScalarFieldEnum | SectorScalarFieldEnum[]
+  }
+
+  /**
+   * Sector findMany
+   */
+  export type SectorFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Sector
+     */
+    select?: SectorSelect<ExtArgs> | null
+    /**
+     * Filter, which Sectors to fetch.
+     */
+    where?: SectorWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Sectors to fetch.
+     */
+    orderBy?: SectorOrderByWithRelationInput | SectorOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing Sectors.
+     */
+    cursor?: SectorWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Sectors from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Sectors.
+     */
+    skip?: number
+    distinct?: SectorScalarFieldEnum | SectorScalarFieldEnum[]
+  }
+
+  /**
+   * Sector create
+   */
+  export type SectorCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Sector
+     */
+    select?: SectorSelect<ExtArgs> | null
+    /**
+     * The data needed to create a Sector.
+     */
+    data: XOR<SectorCreateInput, SectorUncheckedCreateInput>
+  }
+
+  /**
+   * Sector createMany
+   */
+  export type SectorCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many Sectors.
+     */
+    data: SectorCreateManyInput | SectorCreateManyInput[]
+  }
+
+  /**
+   * Sector update
+   */
+  export type SectorUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Sector
+     */
+    select?: SectorSelect<ExtArgs> | null
+    /**
+     * The data needed to update a Sector.
+     */
+    data: XOR<SectorUpdateInput, SectorUncheckedUpdateInput>
+    /**
+     * Choose, which Sector to update.
+     */
+    where: SectorWhereUniqueInput
+  }
+
+  /**
+   * Sector updateMany
+   */
+  export type SectorUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update Sectors.
+     */
+    data: XOR<SectorUpdateManyMutationInput, SectorUncheckedUpdateManyInput>
+    /**
+     * Filter which Sectors to update
+     */
+    where?: SectorWhereInput
+  }
+
+  /**
+   * Sector upsert
+   */
+  export type SectorUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Sector
+     */
+    select?: SectorSelect<ExtArgs> | null
+    /**
+     * The filter to search for the Sector to update in case it exists.
+     */
+    where: SectorWhereUniqueInput
+    /**
+     * In case the Sector found by the `where` argument doesn't exist, create a new Sector with this data.
+     */
+    create: XOR<SectorCreateInput, SectorUncheckedCreateInput>
+    /**
+     * In case the Sector was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<SectorUpdateInput, SectorUncheckedUpdateInput>
+  }
+
+  /**
+   * Sector delete
+   */
+  export type SectorDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Sector
+     */
+    select?: SectorSelect<ExtArgs> | null
+    /**
+     * Filter which Sector to delete.
+     */
+    where: SectorWhereUniqueInput
+  }
+
+  /**
+   * Sector deleteMany
+   */
+  export type SectorDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Sectors to delete
+     */
+    where?: SectorWhereInput
+  }
+
+  /**
+   * Sector findRaw
+   */
+  export type SectorFindRawArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The query predicate filter. If unspecified, then all documents in the collection will match the predicate. ${@link https://docs.mongodb.com/manual/reference/operator/query MongoDB Docs}.
+     */
+    filter?: InputJsonValue
+    /**
+     * Additional options to pass to the `find` command ${@link https://docs.mongodb.com/manual/reference/command/find/#command-fields MongoDB Docs}.
+     */
+    options?: InputJsonValue
+  }
+
+  /**
+   * Sector aggregateRaw
+   */
+  export type SectorAggregateRawArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * An array of aggregation stages to process and transform the document stream via the aggregation pipeline. ${@link https://docs.mongodb.com/manual/reference/operator/aggregation-pipeline MongoDB Docs}.
+     */
+    pipeline?: InputJsonValue[]
+    /**
+     * Additional options to pass to the `aggregate` command ${@link https://docs.mongodb.com/manual/reference/command/aggregate/#command-fields MongoDB Docs}.
+     */
+    options?: InputJsonValue
+  }
+
+  /**
+   * Sector without action
+   */
+  export type SectorDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Sector
+     */
+    select?: SectorSelect<ExtArgs> | null
+  }
+
+
+  /**
    * Enums
    */
 
@@ -10242,6 +12356,40 @@ export namespace Prisma {
   };
 
   export type AboutSectionScalarFieldEnum = (typeof AboutSectionScalarFieldEnum)[keyof typeof AboutSectionScalarFieldEnum]
+
+
+  export const LegalPageScalarFieldEnum: {
+    id: 'id',
+    slug: 'slug',
+    title: 'title',
+    content: 'content',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt'
+  };
+
+  export type LegalPageScalarFieldEnum = (typeof LegalPageScalarFieldEnum)[keyof typeof LegalPageScalarFieldEnum]
+
+
+  export const SectorScalarFieldEnum: {
+    id: 'id',
+    title: 'title',
+    subtitle: 'subtitle',
+    description: 'description',
+    detailedDescription: 'detailedDescription',
+    backgroundImage: 'backgroundImage',
+    ctaText: 'ctaText',
+    ctaLink: 'ctaLink',
+    textColor: 'textColor',
+    overlayOpacity: 'overlayOpacity',
+    styleType: 'styleType',
+    icon: 'icon',
+    order: 'order',
+    isActive: 'isActive',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt'
+  };
+
+  export type SectorScalarFieldEnum = (typeof SectorScalarFieldEnum)[keyof typeof SectorScalarFieldEnum]
 
 
   export const SortOrder: {
@@ -11019,6 +13167,172 @@ export namespace Prisma {
     updatedAt?: DateTimeWithAggregatesFilter<"AboutSection"> | Date | string
   }
 
+  export type LegalPageWhereInput = {
+    AND?: LegalPageWhereInput | LegalPageWhereInput[]
+    OR?: LegalPageWhereInput[]
+    NOT?: LegalPageWhereInput | LegalPageWhereInput[]
+    id?: StringFilter<"LegalPage"> | string
+    slug?: StringFilter<"LegalPage"> | string
+    title?: StringFilter<"LegalPage"> | string
+    content?: StringFilter<"LegalPage"> | string
+    createdAt?: DateTimeFilter<"LegalPage"> | Date | string
+    updatedAt?: DateTimeFilter<"LegalPage"> | Date | string
+  }
+
+  export type LegalPageOrderByWithRelationInput = {
+    id?: SortOrder
+    slug?: SortOrder
+    title?: SortOrder
+    content?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type LegalPageWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    slug?: string
+    AND?: LegalPageWhereInput | LegalPageWhereInput[]
+    OR?: LegalPageWhereInput[]
+    NOT?: LegalPageWhereInput | LegalPageWhereInput[]
+    title?: StringFilter<"LegalPage"> | string
+    content?: StringFilter<"LegalPage"> | string
+    createdAt?: DateTimeFilter<"LegalPage"> | Date | string
+    updatedAt?: DateTimeFilter<"LegalPage"> | Date | string
+  }, "id" | "slug">
+
+  export type LegalPageOrderByWithAggregationInput = {
+    id?: SortOrder
+    slug?: SortOrder
+    title?: SortOrder
+    content?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    _count?: LegalPageCountOrderByAggregateInput
+    _max?: LegalPageMaxOrderByAggregateInput
+    _min?: LegalPageMinOrderByAggregateInput
+  }
+
+  export type LegalPageScalarWhereWithAggregatesInput = {
+    AND?: LegalPageScalarWhereWithAggregatesInput | LegalPageScalarWhereWithAggregatesInput[]
+    OR?: LegalPageScalarWhereWithAggregatesInput[]
+    NOT?: LegalPageScalarWhereWithAggregatesInput | LegalPageScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"LegalPage"> | string
+    slug?: StringWithAggregatesFilter<"LegalPage"> | string
+    title?: StringWithAggregatesFilter<"LegalPage"> | string
+    content?: StringWithAggregatesFilter<"LegalPage"> | string
+    createdAt?: DateTimeWithAggregatesFilter<"LegalPage"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"LegalPage"> | Date | string
+  }
+
+  export type SectorWhereInput = {
+    AND?: SectorWhereInput | SectorWhereInput[]
+    OR?: SectorWhereInput[]
+    NOT?: SectorWhereInput | SectorWhereInput[]
+    id?: StringFilter<"Sector"> | string
+    title?: StringFilter<"Sector"> | string
+    subtitle?: StringNullableFilter<"Sector"> | string | null
+    description?: StringFilter<"Sector"> | string
+    detailedDescription?: StringNullableFilter<"Sector"> | string | null
+    backgroundImage?: StringNullableFilter<"Sector"> | string | null
+    ctaText?: StringNullableFilter<"Sector"> | string | null
+    ctaLink?: StringNullableFilter<"Sector"> | string | null
+    textColor?: StringFilter<"Sector"> | string
+    overlayOpacity?: FloatFilter<"Sector"> | number
+    styleType?: StringFilter<"Sector"> | string
+    icon?: StringNullableFilter<"Sector"> | string | null
+    order?: IntFilter<"Sector"> | number
+    isActive?: BoolFilter<"Sector"> | boolean
+    createdAt?: DateTimeFilter<"Sector"> | Date | string
+    updatedAt?: DateTimeFilter<"Sector"> | Date | string
+  }
+
+  export type SectorOrderByWithRelationInput = {
+    id?: SortOrder
+    title?: SortOrder
+    subtitle?: SortOrder
+    description?: SortOrder
+    detailedDescription?: SortOrder
+    backgroundImage?: SortOrder
+    ctaText?: SortOrder
+    ctaLink?: SortOrder
+    textColor?: SortOrder
+    overlayOpacity?: SortOrder
+    styleType?: SortOrder
+    icon?: SortOrder
+    order?: SortOrder
+    isActive?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type SectorWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    AND?: SectorWhereInput | SectorWhereInput[]
+    OR?: SectorWhereInput[]
+    NOT?: SectorWhereInput | SectorWhereInput[]
+    title?: StringFilter<"Sector"> | string
+    subtitle?: StringNullableFilter<"Sector"> | string | null
+    description?: StringFilter<"Sector"> | string
+    detailedDescription?: StringNullableFilter<"Sector"> | string | null
+    backgroundImage?: StringNullableFilter<"Sector"> | string | null
+    ctaText?: StringNullableFilter<"Sector"> | string | null
+    ctaLink?: StringNullableFilter<"Sector"> | string | null
+    textColor?: StringFilter<"Sector"> | string
+    overlayOpacity?: FloatFilter<"Sector"> | number
+    styleType?: StringFilter<"Sector"> | string
+    icon?: StringNullableFilter<"Sector"> | string | null
+    order?: IntFilter<"Sector"> | number
+    isActive?: BoolFilter<"Sector"> | boolean
+    createdAt?: DateTimeFilter<"Sector"> | Date | string
+    updatedAt?: DateTimeFilter<"Sector"> | Date | string
+  }, "id">
+
+  export type SectorOrderByWithAggregationInput = {
+    id?: SortOrder
+    title?: SortOrder
+    subtitle?: SortOrder
+    description?: SortOrder
+    detailedDescription?: SortOrder
+    backgroundImage?: SortOrder
+    ctaText?: SortOrder
+    ctaLink?: SortOrder
+    textColor?: SortOrder
+    overlayOpacity?: SortOrder
+    styleType?: SortOrder
+    icon?: SortOrder
+    order?: SortOrder
+    isActive?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    _count?: SectorCountOrderByAggregateInput
+    _avg?: SectorAvgOrderByAggregateInput
+    _max?: SectorMaxOrderByAggregateInput
+    _min?: SectorMinOrderByAggregateInput
+    _sum?: SectorSumOrderByAggregateInput
+  }
+
+  export type SectorScalarWhereWithAggregatesInput = {
+    AND?: SectorScalarWhereWithAggregatesInput | SectorScalarWhereWithAggregatesInput[]
+    OR?: SectorScalarWhereWithAggregatesInput[]
+    NOT?: SectorScalarWhereWithAggregatesInput | SectorScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"Sector"> | string
+    title?: StringWithAggregatesFilter<"Sector"> | string
+    subtitle?: StringNullableWithAggregatesFilter<"Sector"> | string | null
+    description?: StringWithAggregatesFilter<"Sector"> | string
+    detailedDescription?: StringNullableWithAggregatesFilter<"Sector"> | string | null
+    backgroundImage?: StringNullableWithAggregatesFilter<"Sector"> | string | null
+    ctaText?: StringNullableWithAggregatesFilter<"Sector"> | string | null
+    ctaLink?: StringNullableWithAggregatesFilter<"Sector"> | string | null
+    textColor?: StringWithAggregatesFilter<"Sector"> | string
+    overlayOpacity?: FloatWithAggregatesFilter<"Sector"> | number
+    styleType?: StringWithAggregatesFilter<"Sector"> | string
+    icon?: StringNullableWithAggregatesFilter<"Sector"> | string | null
+    order?: IntWithAggregatesFilter<"Sector"> | number
+    isActive?: BoolWithAggregatesFilter<"Sector"> | boolean
+    createdAt?: DateTimeWithAggregatesFilter<"Sector"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"Sector"> | Date | string
+  }
+
   export type UserCreateInput = {
     id?: string
     name?: string | null
@@ -11781,6 +14095,194 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
+  export type LegalPageCreateInput = {
+    id?: string
+    slug: string
+    title: string
+    content: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type LegalPageUncheckedCreateInput = {
+    id?: string
+    slug: string
+    title: string
+    content: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type LegalPageUpdateInput = {
+    slug?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    content?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type LegalPageUncheckedUpdateInput = {
+    slug?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    content?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type LegalPageCreateManyInput = {
+    id?: string
+    slug: string
+    title: string
+    content: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type LegalPageUpdateManyMutationInput = {
+    slug?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    content?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type LegalPageUncheckedUpdateManyInput = {
+    slug?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    content?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type SectorCreateInput = {
+    id?: string
+    title: string
+    subtitle?: string | null
+    description: string
+    detailedDescription?: string | null
+    backgroundImage?: string | null
+    ctaText?: string | null
+    ctaLink?: string | null
+    textColor?: string
+    overlayOpacity?: number
+    styleType?: string
+    icon?: string | null
+    order?: number
+    isActive?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type SectorUncheckedCreateInput = {
+    id?: string
+    title: string
+    subtitle?: string | null
+    description: string
+    detailedDescription?: string | null
+    backgroundImage?: string | null
+    ctaText?: string | null
+    ctaLink?: string | null
+    textColor?: string
+    overlayOpacity?: number
+    styleType?: string
+    icon?: string | null
+    order?: number
+    isActive?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type SectorUpdateInput = {
+    title?: StringFieldUpdateOperationsInput | string
+    subtitle?: NullableStringFieldUpdateOperationsInput | string | null
+    description?: StringFieldUpdateOperationsInput | string
+    detailedDescription?: NullableStringFieldUpdateOperationsInput | string | null
+    backgroundImage?: NullableStringFieldUpdateOperationsInput | string | null
+    ctaText?: NullableStringFieldUpdateOperationsInput | string | null
+    ctaLink?: NullableStringFieldUpdateOperationsInput | string | null
+    textColor?: StringFieldUpdateOperationsInput | string
+    overlayOpacity?: FloatFieldUpdateOperationsInput | number
+    styleType?: StringFieldUpdateOperationsInput | string
+    icon?: NullableStringFieldUpdateOperationsInput | string | null
+    order?: IntFieldUpdateOperationsInput | number
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type SectorUncheckedUpdateInput = {
+    title?: StringFieldUpdateOperationsInput | string
+    subtitle?: NullableStringFieldUpdateOperationsInput | string | null
+    description?: StringFieldUpdateOperationsInput | string
+    detailedDescription?: NullableStringFieldUpdateOperationsInput | string | null
+    backgroundImage?: NullableStringFieldUpdateOperationsInput | string | null
+    ctaText?: NullableStringFieldUpdateOperationsInput | string | null
+    ctaLink?: NullableStringFieldUpdateOperationsInput | string | null
+    textColor?: StringFieldUpdateOperationsInput | string
+    overlayOpacity?: FloatFieldUpdateOperationsInput | number
+    styleType?: StringFieldUpdateOperationsInput | string
+    icon?: NullableStringFieldUpdateOperationsInput | string | null
+    order?: IntFieldUpdateOperationsInput | number
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type SectorCreateManyInput = {
+    id?: string
+    title: string
+    subtitle?: string | null
+    description: string
+    detailedDescription?: string | null
+    backgroundImage?: string | null
+    ctaText?: string | null
+    ctaLink?: string | null
+    textColor?: string
+    overlayOpacity?: number
+    styleType?: string
+    icon?: string | null
+    order?: number
+    isActive?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type SectorUpdateManyMutationInput = {
+    title?: StringFieldUpdateOperationsInput | string
+    subtitle?: NullableStringFieldUpdateOperationsInput | string | null
+    description?: StringFieldUpdateOperationsInput | string
+    detailedDescription?: NullableStringFieldUpdateOperationsInput | string | null
+    backgroundImage?: NullableStringFieldUpdateOperationsInput | string | null
+    ctaText?: NullableStringFieldUpdateOperationsInput | string | null
+    ctaLink?: NullableStringFieldUpdateOperationsInput | string | null
+    textColor?: StringFieldUpdateOperationsInput | string
+    overlayOpacity?: FloatFieldUpdateOperationsInput | number
+    styleType?: StringFieldUpdateOperationsInput | string
+    icon?: NullableStringFieldUpdateOperationsInput | string | null
+    order?: IntFieldUpdateOperationsInput | number
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type SectorUncheckedUpdateManyInput = {
+    title?: StringFieldUpdateOperationsInput | string
+    subtitle?: NullableStringFieldUpdateOperationsInput | string | null
+    description?: StringFieldUpdateOperationsInput | string
+    detailedDescription?: NullableStringFieldUpdateOperationsInput | string | null
+    backgroundImage?: NullableStringFieldUpdateOperationsInput | string | null
+    ctaText?: NullableStringFieldUpdateOperationsInput | string | null
+    ctaLink?: NullableStringFieldUpdateOperationsInput | string | null
+    textColor?: StringFieldUpdateOperationsInput | string
+    overlayOpacity?: FloatFieldUpdateOperationsInput | number
+    styleType?: StringFieldUpdateOperationsInput | string
+    icon?: NullableStringFieldUpdateOperationsInput | string | null
+    order?: IntFieldUpdateOperationsInput | number
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
   export type StringFilter<$PrismaModel = never> = {
     equals?: string | StringFieldRefInput<$PrismaModel>
     in?: string[] | ListStringFieldRefInput<$PrismaModel>
@@ -12327,6 +14829,100 @@ export namespace Prisma {
     order?: SortOrder
   }
 
+  export type LegalPageCountOrderByAggregateInput = {
+    id?: SortOrder
+    slug?: SortOrder
+    title?: SortOrder
+    content?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type LegalPageMaxOrderByAggregateInput = {
+    id?: SortOrder
+    slug?: SortOrder
+    title?: SortOrder
+    content?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type LegalPageMinOrderByAggregateInput = {
+    id?: SortOrder
+    slug?: SortOrder
+    title?: SortOrder
+    content?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type SectorCountOrderByAggregateInput = {
+    id?: SortOrder
+    title?: SortOrder
+    subtitle?: SortOrder
+    description?: SortOrder
+    detailedDescription?: SortOrder
+    backgroundImage?: SortOrder
+    ctaText?: SortOrder
+    ctaLink?: SortOrder
+    textColor?: SortOrder
+    overlayOpacity?: SortOrder
+    styleType?: SortOrder
+    icon?: SortOrder
+    order?: SortOrder
+    isActive?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type SectorAvgOrderByAggregateInput = {
+    overlayOpacity?: SortOrder
+    order?: SortOrder
+  }
+
+  export type SectorMaxOrderByAggregateInput = {
+    id?: SortOrder
+    title?: SortOrder
+    subtitle?: SortOrder
+    description?: SortOrder
+    detailedDescription?: SortOrder
+    backgroundImage?: SortOrder
+    ctaText?: SortOrder
+    ctaLink?: SortOrder
+    textColor?: SortOrder
+    overlayOpacity?: SortOrder
+    styleType?: SortOrder
+    icon?: SortOrder
+    order?: SortOrder
+    isActive?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type SectorMinOrderByAggregateInput = {
+    id?: SortOrder
+    title?: SortOrder
+    subtitle?: SortOrder
+    description?: SortOrder
+    detailedDescription?: SortOrder
+    backgroundImage?: SortOrder
+    ctaText?: SortOrder
+    ctaLink?: SortOrder
+    textColor?: SortOrder
+    overlayOpacity?: SortOrder
+    styleType?: SortOrder
+    icon?: SortOrder
+    order?: SortOrder
+    isActive?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type SectorSumOrderByAggregateInput = {
+    overlayOpacity?: SortOrder
+    order?: SortOrder
+  }
+
   export type NullableStringFieldUpdateOperationsInput = {
     set?: string | null
     unset?: boolean
@@ -12569,6 +15165,14 @@ export namespace Prisma {
      * @deprecated Use AboutSectionDefaultArgs instead
      */
     export type AboutSectionArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = AboutSectionDefaultArgs<ExtArgs>
+    /**
+     * @deprecated Use LegalPageDefaultArgs instead
+     */
+    export type LegalPageArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = LegalPageDefaultArgs<ExtArgs>
+    /**
+     * @deprecated Use SectorDefaultArgs instead
+     */
+    export type SectorArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = SectorDefaultArgs<ExtArgs>
 
   /**
    * Batch Payload for updateMany & deleteMany & createMany

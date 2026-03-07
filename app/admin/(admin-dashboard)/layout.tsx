@@ -34,10 +34,12 @@ export default async function AdminLayout({
     { name: 'Content', icon: FileText, href: '/admin/content' },
     { name: 'Carousel', icon: ImageIcon, href: '/admin/carousel' },
     { name: 'Services', icon: Briefcase, href: '/admin/services' },
+    { name: 'Sectors', icon: Briefcase, href: '/admin/sectors' },
     { name: 'Contact Info', icon: Phone, href: '/admin/contact-info' },
     { name: 'Enquiries', icon: Mail, href: '/admin/enquiries' },
     { name: 'Reviews', icon: Star, href: '/admin/reviews' },
     { name: 'About Us', icon: Info, href: '/admin/about' },
+    { name: 'Legal Pages', icon: FileText, href: '/admin/legal-pages' },
     { name: 'Appointments', icon: Calendar, href: '/admin/appointments' },
   ];
 
@@ -48,7 +50,7 @@ export default async function AdminLayout({
         <aside className="w-64 bg-[#004d66] text-white hidden md:flex flex-col">
           <div className="p-6 border-b border-white/10">
             <h1 className="text-xl font-serif tracking-widest uppercase">Admin Panel</h1>
-            <p className="text-[10px] text-white/50 tracking-widest uppercase mt-1">Bio Law Solutions</p>
+            <p className="text-[10px] text-white/50 tracking-widest uppercase mt-1">BioLaw Solutions</p>
           </div>
           <nav className="flex-grow p-4 space-y-2">
             {menuItems.map((item) => (

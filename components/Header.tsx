@@ -7,13 +7,13 @@ export default function Header() {
       <Link href="/" className="flex items-center gap-2">
         <Image 
           src="/img/biolawsolutionslogo.png" 
-          alt="Bio Law Solutions Logo" 
+          alt="BioLaw Solutions Logo" 
           width={150} 
           height={150} 
           className="h-20 w-auto"
         />
         <div className="flex flex-col items-start ml-2">
-          <span className="text-xl tracking-[0.2em] text-[#004d66] font-serif font-light leading-none uppercase">Bio Law Solutions</span>
+          <span className="text-xl tracking-[0.2em] text-[#004d66] font-serif font-light leading-none uppercase">BioLaw Solutions</span>
         </div>
       </Link>
 
@@ -24,12 +24,15 @@ export default function Header() {
         <Link href="/services" className="text-sm font-medium tracking-widest text-gray-600 hover:text-[#004d66] transition-colors uppercase">
           Services
         </Link>
+        <Link href="/sectors" className="text-sm font-medium tracking-widest text-gray-600 hover:text-[#004d66] transition-colors uppercase">
+          Sectors
+        </Link>
         <Link href="/about" className="text-sm font-medium tracking-widest text-gray-600 hover:text-[#004d66] transition-colors uppercase">
           About
         </Link>
-        <Link href="/contact" className="text-sm font-medium tracking-widest text-gray-600 hover:text-[#004d66] transition-colors uppercase">
+        {/* <Link href="/contact" className="text-sm font-medium tracking-widest text-gray-600 hover:text-[#004d66] transition-colors uppercase">
           Contact
-        </Link>
+        </Link> */}
       </nav>
 
       <Link 

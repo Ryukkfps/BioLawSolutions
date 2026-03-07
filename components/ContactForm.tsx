@@ -1,5 +1,6 @@
 'use client';
 
+import { Linkedin } from 'lucide-react';
 import { useState } from 'react';
 
 export default function ContactForm() {
@@ -134,12 +135,15 @@ export default function ContactForm() {
           disabled={isSubmitting}
           className="w-full bg-[#004d66] text-white py-3 px-6 text-sm font-bold tracking-widest uppercase hover:bg-[#003d52] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#004d66] transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
         >
-          {isSubmitting ? 'Sending...' : 'Send Message'}
+          {isSubmitting ? 'Requesting...' : 'Request Consultation'}
         </button>
       </div>
       
       <p className="text-xs text-gray-500 text-center">
         * Required fields. We respect your privacy and will never share your information.
+      </p>
+      <p className="text-xs text-gray-500 text-center">
+        Alternatively, connect via LinkedIn
       </p>
     </form>
   );

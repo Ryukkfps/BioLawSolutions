@@ -47,7 +47,7 @@ export default async function AdminDashboard() {
         </div>
         <div className="p-8">
           <p className="text-gray-600 leading-relaxed">
-            Welcome to the Bio Law Solutions administration panel. From here, you can manage all aspects of your website, 
+            Welcome to the BioLaw Solutions administration panel. From here, you can manage all aspects of your website, 
             including content updates, client enquiries, and appointment scheduling. Use the sidebar to navigate 
             through different management modules.
           </p>

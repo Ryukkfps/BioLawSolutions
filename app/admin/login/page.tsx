@@ -47,7 +47,7 @@ function LoginForm() {
             Admin Login
           </h2>
           <p className="mt-2 text-sm text-gray-600">
-            Bio Law Solutions Dashboard
+            BioLaw Solutions Dashboard
           </p>
         </div>
         <form className="mt-8 space-y-6" onSubmit={handleSubmit}>

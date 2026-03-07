@@ -32,19 +32,19 @@ export default async function Home() {
       
       <main className="grow">
         {/* Additional sections can be added here */}
-        <section className="py-20 px-8 bg-white">
+        {/* <section className="py-20 px-8 bg-white">
           <div className="max-w-6xl mx-auto text-center">
-            <h2 className="text-3xl font-serif text-[#004d66] mb-6">Welcome to Bio Law Solutions</h2>
+            <h2 className="text-3xl font-serif text-[#004d66] mb-6">Welcome to BioLaw Solutions</h2>
             <p className="text-gray-600 max-w-3xl mx-auto leading-relaxed">
               We are a premier law firm dedicated to providing exceptional legal counsel in the intersection of biology, 
               technology, and law. Our expertise helps innovative companies and individuals navigate 
               the complexities of modern legal landscapes.
             </p>
           </div>
-        </section>
+        </section> */}
 
         {/* Reviews Section */}
-        <section className="py-16 px-8 bg-white">
+        {/* <section className="py-16 px-8 bg-white">
           <div className="max-w-6xl mx-auto">
             <ReviewsDisplay variant="carousel" limit={5} />
             <div className="text-center mt-8">
@@ -59,10 +59,10 @@ export default async function Home() {
               </Link>
             </div>
           </div>
-        </section>
+        </section> */}
 
         {/* Appointment Section */}
-        <section className="py-20 px-8 bg-gray-50">
+        {/* <section className="py-20 px-8 bg-gray-50">
           <div className="max-w-4xl mx-auto">
             <div className="text-center mb-12">
               <h2 className="text-sm tracking-[0.4em] text-gray-400 font-medium uppercase mb-4">Book a Consultation</h2>
@@ -70,37 +70,8 @@ export default async function Home() {
             </div>
             <AppointmentForm />
           </div>
-        </section>
+        </section> */}
       </main>
-      
-      <footer className="bg-gray-50 py-12 px-8 border-t border-gray-100">
-        <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-12">
-          <div>
-            <h3 className="text-[#004d66] font-serif text-xl mb-4 uppercase tracking-widest">Bio Law Solutions</h3>
-            <p className="text-sm text-gray-500 leading-relaxed">
-              Providing expert legal guidance for the biological age.
-            </p>
-          </div>
-          <div>
-            <h4 className="font-bold text-gray-900 mb-4 uppercase tracking-widest text-xs">Quick Links</h4>
-            <ul className="space-y-2 text-sm text-gray-600">
-              <li><Link href="/" className="hover:text-[#004d66] transition-colors">Home</Link></li>
-              <li><Link href="/services" className="hover:text-[#004d66] transition-colors">Services</Link></li>
-              <li><Link href="/reviews" className="hover:text-[#004d66] transition-colors">Reviews</Link></li>
-              <li><Link href="/about" className="hover:text-[#004d66] transition-colors">About Us</Link></li>
-              <li><Link href="/contact" className="hover:text-[#004d66] transition-colors">Contact</Link></li>
-            </ul>
-          </div>
-          <div>
-            <ContactInfo variant="sidebar" showTitle={true} />
-          </div>
-        </div>
-        <div className="max-w-6xl mx-auto mt-12 pt-8 border-t border-gray-200 text-center">
-          <p className="text-xs text-gray-400 uppercase tracking-[0.2em]">
-            © {new Date().getFullYear()} Bio Law Solutions. All Rights Reserved.
-          </p>
-        </div>
-      </footer>
     </div>
   );
 }

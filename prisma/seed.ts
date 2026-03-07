@@ -15,6 +15,8 @@ async function main() {
     await prisma.contactInfo.deleteMany({});
     await prisma.review.deleteMany({});
     await prisma.aboutSection.deleteMany({});
+    await prisma.legalPage.deleteMany({});
+    await prisma.sector.deleteMany({});
   } catch (e) {
     console.log("Cleanup failed (likely because collections don't exist yet), continuing...");
   }
@@ -65,7 +67,7 @@ async function main() {
   const slides = [
     {
       title: "Expert Legal Counsel",
-      subtitle: "Bio Law Solutions",
+      subtitle: "BioLaw Solutions",
       description: "Navigate the complex intersection of biology, technology, and law with our specialized expertise.",
       image: "/hero-1.jpg",
       ctaText: "Learn More",
@@ -139,7 +141,7 @@ async function main() {
   const reviews = [
     {
       author: "Dr. Sarah Johnson",
-      content: "Bio Law Solutions provided exceptional guidance for our biotech startup's IP strategy. Their expertise in both science and law made all the difference in securing our patents.",
+      content: "BioLaw Solutions provided exceptional guidance for our biotech startup's IP strategy. Their expertise in both science and law made all the difference in securing our patents.",
       rating: 5,
       isApproved: true,
     },
@@ -163,7 +165,7 @@ async function main() {
     },
     {
       author: "Lisa Thompson",
-      content: "Great experience working with Bio Law Solutions. They made complex legal matters understandable and provided clear, actionable advice.",
+      content: "Great experience working with BioLaw Solutions. They made complex legal matters understandable and provided clear, actionable advice.",
       rating: 5,
       isApproved: false,
     },
@@ -187,7 +189,7 @@ async function main() {
     {
       title: "Our Mission",
       subtitle: "WHAT DRIVES US",
-      content: "At Bio Law Solutions, we are dedicated to providing expert legal guidance at the intersection of life sciences and technology. Our mission is to empower innovators by navigating complex legal landscapes with precision and foresight.\n\nWe believe in a collaborative approach, working closely with our clients to understand their unique challenges and goals. Our team combines deep legal expertise with a passion for scientific progress.",
+      content: "At BioLaw Solutions, we are dedicated to providing expert legal guidance at the intersection of life sciences and technology. Our mission is to empower innovators by navigating complex legal landscapes with precision and foresight.\n\nWe believe in a collaborative approach, working closely with our clients to understand their unique challenges and goals. Our team combines deep legal expertise with a passion for scientific progress.",
       image: "https://images.unsplash.com/photo-1453928582365-b6ad33cbcf64?q=80&w=1000",
       layout: "MIRRORED",
       order: 2,
@@ -197,6 +199,54 @@ async function main() {
 
   for (const data of aboutSections) {
     await prisma.aboutSection.create({ data });
+  }
+
+  // Create sample legal pages
+  const legalPages = [
+    {
+      title: "Privacy Policy",
+      slug: "privacy-policy",
+      content: "<h1>Privacy Policy</h1><p>This is the privacy policy for BioLaw Solutions.</p>",
+    },
+    {
+      title: "Terms and Conditions",
+      slug: "terms-and-conditions",
+      content: "<h1>Terms and Conditions</h1><p>These are the terms and conditions for BioLaw Solutions.</p>",
+    },
+    {
+      title: "SectorsNow Privacy Policy",
+      slug: "sectorsnow-privacy-policy",
+      content: "<h1>SectorsNow Privacy Policy</h1><p>This is the privacy policy for SectorsNow.</p>",
+    },
+    {
+      title: "SectorsNow Terms and Conditions",
+      slug: "sectorsnow-terms-and-conditions",
+      content: "<h1>SectorsNow Terms and Conditions</h1><p>These are the terms and conditions for SectorsNow.</p>",
+    },
+  ];
+
+  for (const data of legalPages) {
+    await prisma.legalPage.create({ data });
+  }
+
+  // Create sample sectors
+  const sectors = [
+    {
+      title: "Biotechnology",
+      description: "Legal support for biotech innovators.",
+      order: 1,
+      isActive: true,
+    },
+    {
+      title: "Pharmaceuticals",
+      description: "Regulatory and compliance guidance.",
+      order: 2,
+      isActive: true,
+    },
+  ];
+
+  for (const data of sectors) {
+    await prisma.sector.create({ data });
   }
 
   console.log('Database seeded successfully!');

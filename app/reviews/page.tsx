@@ -13,7 +13,7 @@ export default function ReviewsPage() {
             </h1>
             <p className="text-xl text-gray-300 max-w-3xl mx-auto">
               Read what our clients say about our legal services and share your own experience 
-              with Bio Law Solutions.
+              with BioLaw Solutions.
             </p>
           </div>
         </div>

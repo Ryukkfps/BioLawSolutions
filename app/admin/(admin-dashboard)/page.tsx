@@ -19,7 +19,7 @@ export default async function AdminDashboard() {
                 Admin Dashboard
               </h1>
               <p className="text-sm text-gray-600 mt-1">
-                Bio Law Solutions Management Panel
+                BioLaw Solutions Management Panel
               </p>
             </div>
           </div>

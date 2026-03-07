@@ -93,7 +93,7 @@ export default function ContentSections() {
               </h1>
               
               <p 
-                className="text-lg md:text-xl mb-12 max-w-4xl mx-auto leading-relaxed opacity-90"
+                className="text-lg md:text-xl mb-12 max-w-4xl mx-auto leading-relaxed opacity-90 whitespace-pre-wrap"
                 style={{ color: section.textColor }}
               >
                 {section.description}

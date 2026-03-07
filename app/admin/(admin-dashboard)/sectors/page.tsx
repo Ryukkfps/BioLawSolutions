@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react';
 import { Plus, Edit, Trash2, Eye, EyeOff, Briefcase } from 'lucide-react';
 import RichTextEditor from '@/components/admin/RichTextEditor';
 
-interface Service {
+interface Sector {
   id: string;
   title: string;
   subtitle: string | null;
@@ -23,11 +23,11 @@ interface Service {
   updatedAt: string;
 }
 
-export default function AdminServices() {
-  const [services, setServices] = useState<Service[]>([]);
+export default function AdminSectors() {
+  const [sectors, setSectors] = useState<Sector[]>([]);
   const [loading, setLoading] = useState(true);
   const [showForm, setShowForm] = useState(false);
-  const [editingService, setEditingService] = useState<Service | null>(null);
+  const [editingSector, setEditingSector] = useState<Sector | null>(null);
   const [actionLoading, setActionLoading] = useState<string | null>(null);
   const [uploadingImage, setUploadingImage] = useState(false);
   const [formData, setFormData] = useState({
@@ -47,18 +47,18 @@ export default function AdminServices() {
   });
 
   useEffect(() => {
-    fetchServices();
+    fetchSectors();
   }, []);
 
-  const fetchServices = async () => {
+  const fetchSectors = async () => {
     try {
-      const response = await fetch('/api/services?admin=true');
+      const response = await fetch('/api/sectors?admin=true');
       if (response.ok) {
         const data = await response.json();
-        setServices(data);
+        setSectors(data);
       }
     } catch (error) {
-      console.error('Error fetching services:', error);
+      console.error('Error fetching sectors:', error);
     } finally {
       setLoading(false);
     }
@@ -75,8 +75,8 @@ export default function AdminServices() {
     setActionLoading('form');
 
     try {
-      const method = editingService ? 'PUT' : 'POST';
-      const url = editingService ? `/api/services/${editingService.id}` : '/api/services';
+      const method = editingSector ? 'PUT' : 'POST';
+      const url = editingSector ? `/api/sectors/${editingSector.id}` : '/api/sectors';
       
       const response = await fetch(url, {
         method,
@@ -87,88 +87,88 @@ export default function AdminServices() {
       });
 
       if (response.ok) {
-        await fetchServices();
+        await fetchSectors();
         setShowForm(false);
-        setEditingService(null);
+        setEditingSector(null);
         resetForm();
       } else {
         const errorData = await response.json();
         alert(`Error: ${errorData.error}`);
       }
     } catch (error) {
-      console.error('Error saving service:', error);
-      alert('Error saving service');
+      console.error('Error saving sector:', error);
+      alert('Error saving sector');
     } finally {
       setActionLoading(null);
     }
   };
 
-  const handleEdit = (service: Service) => {
-    setEditingService(service);
+  const handleEdit = (sector: Sector) => {
+    setEditingSector(sector);
     setFormData({
-      title: service.title,
-      subtitle: service.subtitle || '',
-      description: service.description,
-      detailedDescription: service.detailedDescription || '',
-      backgroundImage: service.backgroundImage || '',
-      ctaText: service.ctaText || '',
-      ctaLink: service.ctaLink || '',
-      textColor: service.textColor,
-      overlayOpacity: service.overlayOpacity,
-      styleType: service.styleType,
-      order: service.order,
-      icon: service.icon || '',
-      isActive: service.isActive,
+      title: sector.title,
+      subtitle: sector.subtitle || '',
+      description: sector.description,
+      detailedDescription: sector.detailedDescription || '',
+      backgroundImage: sector.backgroundImage || '',
+      ctaText: sector.ctaText || '',
+      ctaLink: sector.ctaLink || '',
+      textColor: sector.textColor,
+      overlayOpacity: sector.overlayOpacity,
+      styleType: sector.styleType,
+      order: sector.order,
+      icon: sector.icon || '',
+      isActive: sector.isActive,
     });
     setShowForm(true);
   };
 
-  const handleDelete = async (serviceId: string) => {
-    if (!confirm('Are you sure you want to delete this service?')) {
+  const handleDelete = async (sectorId: string) => {
+    if (!confirm('Are you sure you want to delete this sector?')) {
       return;
     }
 
-    setActionLoading(serviceId);
+    setActionLoading(sectorId);
     try {
-      const response = await fetch(`/api/services/${serviceId}`, {
+      const response = await fetch(`/api/sectors/${sectorId}`, {
         method: 'DELETE',
       });
 
       if (response.ok) {
-        await fetchServices();
+        await fetchSectors();
       } else {
-        alert('Error deleting service');
+        alert('Error deleting sector');
       }
     } catch (error) {
-      console.error('Error deleting service:', error);
-      alert('Error deleting service');
+      console.error('Error deleting sector:', error);
+      alert('Error deleting sector');
     } finally {
       setActionLoading(null);
     }
   };
 
-  const handleToggleActive = async (serviceId: string, currentStatus: boolean) => {
-    setActionLoading(serviceId);
+  const handleToggleActive = async (sectorId: string, currentStatus: boolean) => {
+    setActionLoading(sectorId);
     try {
-      const service = services.find(s => s.id === serviceId);
-      if (!service) return;
+      const sector = sectors.find(s => s.id === sectorId);
+      if (!sector) return;
 
-      const response = await fetch(`/api/services/${serviceId}`, {
+      const response = await fetch(`/api/sectors/${sectorId}`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          ...service,
+          ...sector,
           isActive: !currentStatus,
         }),
       });
 
       if (response.ok) {
-        await fetchServices();
+        await fetchSectors();
       }
     } catch (error) {
-      console.error('Error toggling service status:', error);
+      console.error('Error toggling sector status:', error);
     } finally {
       setActionLoading(null);
     }
@@ -212,7 +212,7 @@ export default function AdminServices() {
       textColor: 'white',
       overlayOpacity: 0.5,
       styleType: 'card',
-      order: services.length + 1,
+      order: sectors.length + 1,
       icon: '',
       isActive: true,
     });
@@ -223,7 +223,7 @@ export default function AdminServices() {
       <div className="p-8 flex items-center justify-center">
         <div className="text-center">
           <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-[#004d66] mx-auto"></div>
-          <p className="mt-4 text-gray-600">Loading services...</p>
+          <p className="mt-4 text-gray-600">Loading sectors...</p>
         </div>
       </div>
     );
@@ -236,39 +236,39 @@ export default function AdminServices() {
         <div className="flex items-center justify-between mb-8">
           <div>
             <h1 className="text-2xl font-serif text-[#004d66] uppercase tracking-widest mb-2">
-              Services Management
+              Sectors Management
             </h1>
             <p className="text-gray-600">
-              Manage your legal services with two different display styles
+              Manage your industry sectors with two different display styles
             </p>
           </div>
           <button
             onClick={() => {
               resetForm();
-              setEditingService(null);
+              setEditingSector(null);
               setShowForm(true);
             }}
             className="flex items-center px-4 py-2 bg-[#004d66] text-white text-sm font-medium rounded-md hover:bg-[#003d52] transition-colors"
           >
             <Plus className="w-4 h-4 mr-2" />
-            Add Service
+            Add Sector
           </button>
         </div>
 
-        {/* Services List */}
+        {/* Sectors List */}
         <div className="bg-white rounded-lg shadow-sm border border-gray-200">
           <div className="p-6 border-b border-gray-200">
-            <h2 className="text-lg font-medium text-gray-900">Services</h2>
+            <h2 className="text-lg font-medium text-gray-900">Sectors</h2>
             <p className="text-sm text-gray-500 mt-1">
-              {services.length} service{services.length !== 1 ? 's' : ''} • Mix of fullscreen and card styles
+              {sectors.length} sector{sectors.length !== 1 ? 's' : ''} • Mix of fullscreen and card styles
             </p>
           </div>
 
           <div className="divide-y divide-gray-200">
-            {services.length === 0 ? (
+            {sectors.length === 0 ? (
               <div className="p-8 text-center text-gray-500">
                 <Briefcase className="w-12 h-12 mx-auto mb-4 text-gray-300" />
-                <p>No services found</p>
+                <p>No sectors found</p>
                 <button
                   onClick={() => {
                     resetForm();
@@ -276,57 +276,57 @@ export default function AdminServices() {
                   }}
                   className="mt-2 text-[#004d66] hover:underline text-sm"
                 >
-                  Create your first service
+                  Create your first sector
                 </button>
               </div>
             ) : (
-              services.map((service) => (
-                <div key={service.id} className="p-6">
+              sectors.map((sector) => (
+                <div key={sector.id} className="p-6">
                   <div className="flex items-start justify-between">
                     <div className="flex-1">
                       <div className="flex items-center space-x-3 mb-2">
-                        <h3 className="font-medium text-gray-900">{service.title}</h3>
-                        {service.subtitle && (
-                          <span className="text-sm text-gray-500">• {service.subtitle}</span>
+                        <h3 className="font-medium text-gray-900">{sector.title}</h3>
+                        {sector.subtitle && (
+                          <span className="text-sm text-gray-500">• {sector.subtitle}</span>
                         )}
                         <span className={`px-2 py-1 text-xs rounded-full ${
-                          service.isActive 
+                          sector.isActive 
                             ? 'bg-green-100 text-green-800' 
                             : 'bg-gray-100 text-gray-800'
                         }`}>
-                          {service.isActive ? 'Active' : 'Inactive'}
+                          {sector.isActive ? 'Active' : 'Inactive'}
                         </span>
                         <span className={`px-2 py-1 text-xs rounded-full ${
-                          service.styleType === 'fullscreen'
+                          sector.styleType === 'fullscreen'
                             ? 'bg-blue-100 text-blue-800'
                             : 'bg-purple-100 text-purple-800'
                         }`}>
-                          {service.styleType === 'fullscreen' ? 'Full Screen' : 'Card Style'}
+                          {sector.styleType === 'fullscreen' ? 'Full Screen' : 'Card Style'}
                         </span>
-                        <span className="text-xs text-gray-400">Order: {service.order}</span>
+                        <span className="text-xs text-gray-400">Order: {sector.order}</span>
                       </div>
                       <p className="text-gray-600 text-sm mb-2 line-clamp-2">
-                        {service.description}
+                        {sector.description}
                       </p>
                       <div className="flex items-center space-x-4 text-xs text-gray-400">
-                        {service.backgroundImage && <span>Has Background</span>}
-                        <span>Text: {service.textColor}</span>
-                        {service.ctaText && <span>CTA: {service.ctaText}</span>}
+                        {sector.backgroundImage && <span>Has Background</span>}
+                        <span>Text: {sector.textColor}</span>
+                        {sector.ctaText && <span>CTA: {sector.ctaText}</span>}
                       </div>
                     </div>
                     
                     <div className="flex items-center space-x-2 ml-4">
                       <button
-                        onClick={() => handleToggleActive(service.id, service.isActive)}
-                        disabled={actionLoading === service.id}
+                        onClick={() => handleToggleActive(sector.id, sector.isActive)}
+                        disabled={actionLoading === sector.id}
                         className="p-2 text-gray-400 hover:text-gray-600 transition-colors"
-                        title={service.isActive ? 'Deactivate' : 'Activate'}
+                        title={sector.isActive ? 'Deactivate' : 'Activate'}
                       >
-                        {service.isActive ? <Eye className="w-4 h-4" /> : <EyeOff className="w-4 h-4" />}
+                        {sector.isActive ? <Eye className="w-4 h-4" /> : <EyeOff className="w-4 h-4" />}
                       </button>
                       
                       <button
-                        onClick={() => handleEdit(service)}
+                        onClick={() => handleEdit(sector)}
                         className="p-2 text-gray-400 hover:text-gray-600 transition-colors"
                         title="Edit"
                       >
@@ -334,12 +334,12 @@ export default function AdminServices() {
                       </button>
                       
                       <button
-                        onClick={() => handleDelete(service.id)}
-                        disabled={actionLoading === service.id}
+                        onClick={() => handleDelete(sector.id)}
+                        disabled={actionLoading === sector.id}
                         className="p-2 text-red-400 hover:text-red-600 transition-colors"
                         title="Delete"
                       >
-                        {actionLoading === service.id ? (
+                        {actionLoading === sector.id ? (
                           <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-red-400"></div>
                         ) : (
                           <Trash2 className="w-4 h-4" />
@@ -359,21 +359,11 @@ export default function AdminServices() {
             <div className="bg-white rounded-lg shadow-xl max-w-4xl w-full max-h-[90vh] overflow-y-auto">
               <div className="p-6 border-b border-gray-200">
                 <h3 className="text-lg font-medium text-gray-900">
-                  {editingService ? 'Edit Service' : 'Add Service'}
+                  {editingSector ? 'Edit Sector' : 'Add Sector'}
                 </h3>
               </div>
               
               <form onSubmit={handleSubmit} className="p-6 space-y-6">
-                {/* Help Section */}
-                <div className="bg-blue-50 border border-blue-200 rounded-lg p-4 mb-6">
-                  <h4 className="text-sm font-medium text-blue-900 mb-2">💡 Service Display Styles</h4>
-                  <ul className="text-xs text-blue-800 space-y-1">
-                    <li>• <strong>Full Screen:</strong> Large sections with background images and parallax scrolling</li>
-                    <li>• <strong>Card Style:</strong> Compact cards displayed in a grid layout</li>
-                    <li>• Mix both styles for visual variety and better user engagement</li>
-                  </ul>
-                </div>
-
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div>
                     <label className="block text-sm font-medium text-gray-700 mb-2">
@@ -385,7 +375,7 @@ export default function AdminServices() {
                       value={formData.title}
                       onChange={(e) => setFormData({ ...formData, title: e.target.value })}
                       className="w-full px-4 py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#004d66] focus:border-transparent text-gray-900 placeholder-gray-600"
-                      placeholder="Service title"
+                      placeholder="Sector title"
                     />
                   </div>
                   
@@ -405,7 +395,7 @@ export default function AdminServices() {
 
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-2">
-                    Description *
+                    Short Description *
                   </label>
                   <textarea
                     required
@@ -413,7 +403,7 @@ export default function AdminServices() {
                     value={formData.description}
                     onChange={(e) => setFormData({ ...formData, description: e.target.value })}
                     className="w-full px-4 py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#004d66] focus:border-transparent text-gray-900 placeholder-gray-600"
-                    placeholder="Brief service description"
+                    placeholder="Brief sector description"
                   />
                 </div>
 
@@ -424,18 +414,17 @@ export default function AdminServices() {
                   <RichTextEditor
                     value={formData.detailedDescription}
                     onChange={(value) => setFormData({ ...formData, detailedDescription: value })}
-                    placeholder="Detailed service description..."
+                    placeholder="Detailed sector description..."
                   />
                 </div>
 
                 {/* Background Image Upload */}
-                <div>
+                <div className="pt-4">
                   <label className="block text-sm font-medium text-gray-700 mb-2">
                     Background Image
                   </label>
                   <div className="space-y-3">
                     <div>
-                      <label className="block text-xs text-gray-500 mb-1">Upload image (JPG, PNG, GIF, WebP - Max 5MB)</label>
                       <input
                         type="file"
                         accept="image/*"
@@ -448,12 +437,8 @@ export default function AdminServices() {
                         className="block w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-md file:border-0 file:text-sm file:font-medium file:bg-[#004d66] file:text-white hover:file:bg-[#003d52]"
                         disabled={uploadingImage}
                       />
-                      {uploadingImage && (
-                        <p className="text-sm text-blue-600 mt-1">Uploading image...</p>
-                      )}
                     </div>
                     
-                    <div className="text-center text-sm text-gray-500">or</div>
                     <div>
                       <input
                         type="text"
@@ -463,20 +448,6 @@ export default function AdminServices() {
                         placeholder="Enter image URL"
                       />
                     </div>
-                    
-                    {formData.backgroundImage && (
-                      <div className="mt-2">
-                        <p className="text-sm text-gray-600 mb-2">Preview:</p>
-                        <img
-                          src={formData.backgroundImage}
-                          alt="Preview"
-                          className="h-20 w-32 object-cover rounded border"
-                          onError={(e) => {
-                            (e.target as HTMLImageElement).src = 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTAwIiBoZWlnaHQ9IjEwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTAwIiBoZWlnaHQ9IjEwMCIgZmlsbD0iI2VlZSIvPjx0ZXh0IHg9IjUwIiB5PSI1MCIgZm9udC1zaXplPSIxMiIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZHk9Ii4zZW0iIGZpbGw9IiM5OTkiPkltYWdlPC90ZXh0Pjwvc3ZnPg==';
-                          }}
-                        />
-                      </div>
-                    )}
                   </div>
                 </div>
 
@@ -551,7 +522,6 @@ export default function AdminServices() {
                       onChange={(e) => setFormData({ ...formData, overlayOpacity: parseFloat(e.target.value) })}
                       className="w-full"
                     />
-                    <span className="text-xs text-gray-500">{Math.round(formData.overlayOpacity * 100)}%</span>
                   </div>
                   
                   <div>
@@ -586,7 +556,7 @@ export default function AdminServices() {
                     type="button"
                     onClick={() => {
                       setShowForm(false);
-                      setEditingService(null);
+                      setEditingSector(null);
                     }}
                     className="px-6 py-3 border border-gray-300 text-gray-700 text-sm font-medium rounded-md hover:bg-gray-50"
                   >
@@ -597,7 +567,7 @@ export default function AdminServices() {
                     disabled={actionLoading === 'form'}
                     className="px-8 py-3 bg-[#004d66] text-white text-sm font-medium rounded-md hover:bg-[#003d52] disabled:opacity-50"
                   >
-                    {actionLoading === 'form' ? 'Saving...' : editingService ? 'Update' : 'Create'}
+                    {actionLoading === 'form' ? 'Saving...' : editingSector ? 'Update' : 'Create'}
                   </button>
                 </div>
               </form>

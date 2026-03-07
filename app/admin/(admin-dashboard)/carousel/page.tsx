@@ -10,6 +10,7 @@ interface CarouselSlide {
   description: string;
   image: string;
   ctaText: string;
+  ctaLink?: string;
   order: number;
   isActive: boolean;
   createdAt: string;
@@ -29,6 +30,7 @@ export default function CarouselManagement() {
     description: '',
     image: '',
     ctaText: '',
+    ctaLink: '',
     order: 1,
     isActive: true
   });
@@ -109,6 +111,7 @@ export default function CarouselManagement() {
           description: '',
           image: '',
           ctaText: '',
+          ctaLink: '',
           order: 1,
           isActive: true
         });
@@ -130,6 +133,7 @@ export default function CarouselManagement() {
       description: slide.description,
       image: slide.image,
       ctaText: slide.ctaText,
+      ctaLink: slide.ctaLink || '',
       order: slide.order,
       isActive: slide.isActive
     });
@@ -325,6 +329,17 @@ export default function CarouselManagement() {
                       onChange={(e) => setFormData({...formData, ctaText: e.target.value})}
                       className="mt-1 block w-full border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-[#004d66] focus:border-[#004d66] text-gray-900 placeholder-gray-600"
                       placeholder="Learn More"
+                    />
+                  </div>
+                  
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700">CTA Link</label>
+                    <input
+                      type="text"
+                      value={formData.ctaLink}
+                      onChange={(e) => setFormData({...formData, ctaLink: e.target.value})}
+                      className="mt-1 block w-full border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-[#004d66] focus:border-[#004d66] text-gray-900 placeholder-gray-600"
+                      placeholder="/services or https://example.com"
                     />
                   </div>
                   

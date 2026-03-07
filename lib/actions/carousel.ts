@@ -3,7 +3,7 @@
 import { prisma } from '@/lib/prisma';
 import { revalidatePath } from 'next/cache';
 
-export async function createSlide(data: { title: string; subtitle: string; description: string; image: string; ctaText: string; order?: number; isActive?: boolean }) {
+export async function createSlide(data: { title: string; subtitle: string; description: string; image: string; ctaText: string; ctaLink?: string; order?: number; isActive?: boolean }) {
   const slide = await prisma.carouselSlide.create({
     data,
   });
@@ -12,7 +12,7 @@ export async function createSlide(data: { title: string; subtitle: string; descr
   return slide;
 }
 
-export async function updateSlide(id: string, data: { title?: string; subtitle?: string; description?: string; image?: string; ctaText?: string; order?: number; isActive?: boolean }) {
+export async function updateSlide(id: string, data: { title?: string; subtitle?: string; description?: string; image?: string; ctaText?: string; ctaLink?: string; order?: number; isActive?: boolean }) {
   const slide = await prisma.carouselSlide.update({
     where: { id },
     data,

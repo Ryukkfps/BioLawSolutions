@@ -2632,6 +2632,7 @@ export namespace Prisma {
     description: string | null
     image: string | null
     ctaText: string | null
+    ctaLink: string | null
     order: number | null
     isActive: boolean | null
     createdAt: Date | null
@@ -2645,6 +2646,7 @@ export namespace Prisma {
     description: string | null
     image: string | null
     ctaText: string | null
+    ctaLink: string | null
     order: number | null
     isActive: boolean | null
     createdAt: Date | null
@@ -2658,6 +2660,7 @@ export namespace Prisma {
     description: number
     image: number
     ctaText: number
+    ctaLink: number
     order: number
     isActive: number
     createdAt: number
@@ -2681,6 +2684,7 @@ export namespace Prisma {
     description?: true
     image?: true
     ctaText?: true
+    ctaLink?: true
     order?: true
     isActive?: true
     createdAt?: true
@@ -2694,6 +2698,7 @@ export namespace Prisma {
     description?: true
     image?: true
     ctaText?: true
+    ctaLink?: true
     order?: true
     isActive?: true
     createdAt?: true
@@ -2707,6 +2712,7 @@ export namespace Prisma {
     description?: true
     image?: true
     ctaText?: true
+    ctaLink?: true
     order?: true
     isActive?: true
     createdAt?: true
@@ -2807,6 +2813,7 @@ export namespace Prisma {
     description: string
     image: string
     ctaText: string
+    ctaLink: string | null
     order: number
     isActive: boolean
     createdAt: Date
@@ -2839,6 +2846,7 @@ export namespace Prisma {
     description?: boolean
     image?: boolean
     ctaText?: boolean
+    ctaLink?: boolean
     order?: boolean
     isActive?: boolean
     createdAt?: boolean
@@ -2853,6 +2861,7 @@ export namespace Prisma {
     description?: boolean
     image?: boolean
     ctaText?: boolean
+    ctaLink?: boolean
     order?: boolean
     isActive?: boolean
     createdAt?: boolean
@@ -2870,6 +2879,7 @@ export namespace Prisma {
       description: string
       image: string
       ctaText: string
+      ctaLink: string | null
       order: number
       isActive: boolean
       createdAt: Date
@@ -3272,6 +3282,7 @@ export namespace Prisma {
     readonly description: FieldRef<"CarouselSlide", 'String'>
     readonly image: FieldRef<"CarouselSlide", 'String'>
     readonly ctaText: FieldRef<"CarouselSlide", 'String'>
+    readonly ctaLink: FieldRef<"CarouselSlide", 'String'>
     readonly order: FieldRef<"CarouselSlide", 'Int'>
     readonly isActive: FieldRef<"CarouselSlide", 'Boolean'>
     readonly createdAt: FieldRef<"CarouselSlide", 'DateTime'>
@@ -12237,6 +12248,7 @@ export namespace Prisma {
     description: 'description',
     image: 'image',
     ctaText: 'ctaText',
+    ctaLink: 'ctaLink',
     order: 'order',
     isActive: 'isActive',
     createdAt: 'createdAt',
@@ -12551,6 +12563,7 @@ export namespace Prisma {
     description?: StringFilter<"CarouselSlide"> | string
     image?: StringFilter<"CarouselSlide"> | string
     ctaText?: StringFilter<"CarouselSlide"> | string
+    ctaLink?: StringNullableFilter<"CarouselSlide"> | string | null
     order?: IntFilter<"CarouselSlide"> | number
     isActive?: BoolFilter<"CarouselSlide"> | boolean
     createdAt?: DateTimeFilter<"CarouselSlide"> | Date | string
@@ -12564,6 +12577,7 @@ export namespace Prisma {
     description?: SortOrder
     image?: SortOrder
     ctaText?: SortOrder
+    ctaLink?: SortOrder
     order?: SortOrder
     isActive?: SortOrder
     createdAt?: SortOrder
@@ -12580,6 +12594,7 @@ export namespace Prisma {
     description?: StringFilter<"CarouselSlide"> | string
     image?: StringFilter<"CarouselSlide"> | string
     ctaText?: StringFilter<"CarouselSlide"> | string
+    ctaLink?: StringNullableFilter<"CarouselSlide"> | string | null
     order?: IntFilter<"CarouselSlide"> | number
     isActive?: BoolFilter<"CarouselSlide"> | boolean
     createdAt?: DateTimeFilter<"CarouselSlide"> | Date | string
@@ -12593,6 +12608,7 @@ export namespace Prisma {
     description?: SortOrder
     image?: SortOrder
     ctaText?: SortOrder
+    ctaLink?: SortOrder
     order?: SortOrder
     isActive?: SortOrder
     createdAt?: SortOrder
@@ -12614,6 +12630,7 @@ export namespace Prisma {
     description?: StringWithAggregatesFilter<"CarouselSlide"> | string
     image?: StringWithAggregatesFilter<"CarouselSlide"> | string
     ctaText?: StringWithAggregatesFilter<"CarouselSlide"> | string
+    ctaLink?: StringNullableWithAggregatesFilter<"CarouselSlide"> | string | null
     order?: IntWithAggregatesFilter<"CarouselSlide"> | number
     isActive?: BoolWithAggregatesFilter<"CarouselSlide"> | boolean
     createdAt?: DateTimeWithAggregatesFilter<"CarouselSlide"> | Date | string
@@ -13406,6 +13423,7 @@ export namespace Prisma {
     description: string
     image: string
     ctaText: string
+    ctaLink?: string | null
     order?: number
     isActive?: boolean
     createdAt?: Date | string
@@ -13419,6 +13437,7 @@ export namespace Prisma {
     description: string
     image: string
     ctaText: string
+    ctaLink?: string | null
     order?: number
     isActive?: boolean
     createdAt?: Date | string
@@ -13431,6 +13450,7 @@ export namespace Prisma {
     description?: StringFieldUpdateOperationsInput | string
     image?: StringFieldUpdateOperationsInput | string
     ctaText?: StringFieldUpdateOperationsInput | string
+    ctaLink?: NullableStringFieldUpdateOperationsInput | string | null
     order?: IntFieldUpdateOperationsInput | number
     isActive?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -13443,6 +13463,7 @@ export namespace Prisma {
     description?: StringFieldUpdateOperationsInput | string
     image?: StringFieldUpdateOperationsInput | string
     ctaText?: StringFieldUpdateOperationsInput | string
+    ctaLink?: NullableStringFieldUpdateOperationsInput | string | null
     order?: IntFieldUpdateOperationsInput | number
     isActive?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -13456,6 +13477,7 @@ export namespace Prisma {
     description: string
     image: string
     ctaText: string
+    ctaLink?: string | null
     order?: number
     isActive?: boolean
     createdAt?: Date | string
@@ -13468,6 +13490,7 @@ export namespace Prisma {
     description?: StringFieldUpdateOperationsInput | string
     image?: StringFieldUpdateOperationsInput | string
     ctaText?: StringFieldUpdateOperationsInput | string
+    ctaLink?: NullableStringFieldUpdateOperationsInput | string | null
     order?: IntFieldUpdateOperationsInput | number
     isActive?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -13480,6 +13503,7 @@ export namespace Prisma {
     description?: StringFieldUpdateOperationsInput | string
     image?: StringFieldUpdateOperationsInput | string
     ctaText?: StringFieldUpdateOperationsInput | string
+    ctaLink?: NullableStringFieldUpdateOperationsInput | string | null
     order?: IntFieldUpdateOperationsInput | number
     isActive?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -14429,6 +14453,7 @@ export namespace Prisma {
     description?: SortOrder
     image?: SortOrder
     ctaText?: SortOrder
+    ctaLink?: SortOrder
     order?: SortOrder
     isActive?: SortOrder
     createdAt?: SortOrder
@@ -14446,6 +14471,7 @@ export namespace Prisma {
     description?: SortOrder
     image?: SortOrder
     ctaText?: SortOrder
+    ctaLink?: SortOrder
     order?: SortOrder
     isActive?: SortOrder
     createdAt?: SortOrder
@@ -14459,6 +14485,7 @@ export namespace Prisma {
     description?: SortOrder
     image?: SortOrder
     ctaText?: SortOrder
+    ctaLink?: SortOrder
     order?: SortOrder
     isActive?: SortOrder
     createdAt?: SortOrder

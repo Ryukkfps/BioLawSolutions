@@ -4,7 +4,7 @@ import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { createSlide, updateSlide } from '@/lib/actions/carousel';
 
-export default function CarouselForm({ initialData }: { initialData?: { id?: string; title: string; subtitle: string; description: string; image: string; ctaText: string; isActive: boolean; order: number } }) {
+export default function CarouselForm({ initialData }: { initialData?: { id?: string; title: string; subtitle: string; description: string; image: string; ctaText: string; ctaLink?: string; isActive: boolean; order: number } }) {
   const router = useRouter();
   const [loading, setLoading] = useState(false);
   const [formData, setFormData] = useState({
@@ -13,6 +13,7 @@ export default function CarouselForm({ initialData }: { initialData?: { id?: str
     description: initialData?.description || '',
     image: initialData?.image || '',
     ctaText: initialData?.ctaText || 'Learn More',
+    ctaLink: initialData?.ctaLink || '',
     isActive: initialData?.isActive ?? true,
     order: initialData?.order || 0,
   });
@@ -97,6 +98,16 @@ export default function CarouselForm({ initialData }: { initialData?: { id?: str
             value={formData.ctaText}
             onChange={(e) => setFormData({ ...formData, ctaText: e.target.value })}
             placeholder="Learn More"
+          />
+        </div>
+        <div className="space-y-2">
+          <label className="text-xs font-bold text-gray-500 uppercase tracking-widest">CTA Link</label>
+          <input
+            type="text"
+            className="w-full px-4 py-3 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#004d66] text-gray-900 placeholder-gray-600"
+            value={formData.ctaLink}
+            onChange={(e) => setFormData({ ...formData, ctaLink: e.target.value })}
+            placeholder="/services or https://example.com"
           />
         </div>
       </div>

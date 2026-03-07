@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import Image from 'next/image';
+import Link from 'next/link';
 
 interface Slide {
   id: string;
@@ -10,6 +11,7 @@ interface Slide {
   description: string;
   image: string;
   ctaText: string;
+  ctaLink?: string;
 }
 
 export default function HeroCarousel({ initialSlides }: { initialSlides: Slide[] }) {
@@ -21,7 +23,8 @@ export default function HeroCarousel({ initialSlides }: { initialSlides: Slide[]
       subtitle: "FOR YOUR BUSINESS",
       description: "We provide comprehensive legal services tailored to your specific biological and legal needs.",
       image: "https://images.unsplash.com/photo-1589829545856-d10d557cf95f?auto=format&fit=crop&q=80&w=1920",
-      ctaText: "Our Services"
+      ctaText: "Our Services",
+      ctaLink: "/services"
     }
   ];
 
@@ -66,9 +69,12 @@ export default function HeroCarousel({ initialSlides }: { initialSlides: Slide[]
             <p className="max-w-2xl text-lg md:text-xl font-light text-gray-200 mb-10 animate-fadeInUp delay-200">
               {slide.description}
             </p>
-            <button className="px-8 py-3 bg-[#004d66] hover:bg-[#003d52] text-white text-sm font-bold tracking-[0.2em] uppercase transition-all animate-fadeInUp delay-300">
+            <Link 
+              href={slide.ctaLink || '/services'} 
+              className="px-8 py-3 bg-[#004d66] hover:bg-[#003d52] text-white text-sm font-bold tracking-[0.2em] uppercase transition-all animate-fadeInUp delay-300"
+            >
               {slide.ctaText}
-            </button>
+            </Link>
           </div>
         </div>
       ))}

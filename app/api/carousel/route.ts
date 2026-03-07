@@ -19,7 +19,7 @@ export async function GET() {
 export async function POST(request: Request) {
   try {
     const body = await request.json();
-    const { title, subtitle, description, image, ctaText, order, isActive } = body;
+    const { title, subtitle, description, image, ctaText, ctaLink, order, isActive } = body;
     
     const slide = await prisma.carouselSlide.create({
       data: {
@@ -28,6 +28,7 @@ export async function POST(request: Request) {
         description,
         image,
         ctaText,
+        ctaLink,
         order: order || 0,
         isActive: isActive !== undefined ? isActive : true
       }

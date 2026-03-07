@@ -208,6 +208,7 @@ export default function CarouselManagement() {
                   description: '',
                   image: '',
                   ctaText: '',
+                  ctaLink: '',
                   order: slides.length + 1,
                   isActive: true
                 });

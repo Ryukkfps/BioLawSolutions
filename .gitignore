@@ -45,3 +45,7 @@ next-env.d.ts
 # uploaded files
 /public/uploads/*
 !/public/uploads/.gitkeep
+
+# new uploads directory (served via API)
+/uploads/*
+!/uploads/.gitkeep
